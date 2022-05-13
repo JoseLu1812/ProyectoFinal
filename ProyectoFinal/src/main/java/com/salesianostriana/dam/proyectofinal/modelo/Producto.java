@@ -1,4 +1,4 @@
-package com.salesianos.dam.modelo;
+package com.salesianostriana.dam.proyectofinal.modelo;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
