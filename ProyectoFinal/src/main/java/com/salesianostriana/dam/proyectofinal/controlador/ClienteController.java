@@ -38,6 +38,8 @@ public class ClienteController {
 	public String formulario() {
 		return "formulario";
 	}
+	
+	
 
 	
 
