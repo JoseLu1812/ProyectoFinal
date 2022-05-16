@@ -10,7 +10,7 @@ import com.salesianostriana.dam.proyectofinal.modelo.Cliente;
 public class ClienteController {
 	
 	@GetMapping({"/", "/index"})
-	public String mostrarPagPrincipal() {
+	public String home() {
 		return "index";
 	}
 	
@@ -40,7 +40,4 @@ public class ClienteController {
 	}
 	
 	
-
-	
-
 }
