@@ -28,7 +28,7 @@ public class CarritoService {
 		this.productoRepository=productorepository;
 	}
 	
-	public void addProducto (Producto p) {
+	public void agregarProducto (Producto p) {
 		if (products.containsKey(p)) {
 			products.replace(p, products.get(p)+1);
 		}else {
@@ -36,7 +36,7 @@ public class CarritoService {
 		}
 	}
 	
-	public void removeProducto (Producto p) {
+	public void eliminarProducto (Producto p) {
         if (products.containsKey(p)) {
             if (products.get(p) > 1)
                 products.replace(p, products.get(p) - 1);
@@ -47,7 +47,7 @@ public class CarritoService {
 	}
 	
 	
-    public Map<Producto, Integer> getProductsInCart() {
+    public Map<Producto, Integer> obtenerProductosCart() {
         return Collections.unmodifiableMap(products);
     }
 

@@ -3,11 +3,11 @@ package com.salesianostriana.dam.proyectofinal.controlador;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.salesianostriana.dam.proyectofinal.modelo.Cliente;
+import com.salesianostriana.dam.proyectofinal.modelo.Usuario;
 
 
 @Controller 
-public class ClienteController {
+public class UsuarioController {
 	
 	@GetMapping({"/", "/index"})
 	public String home() {
