@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.salesianostriana.dam.proyectofinal.modelo.Cliente;
 
-@Repository
+
 public interface ClienteRepository 
 
 extends JpaRepository<Cliente, Long>{
+	
 	
 }
