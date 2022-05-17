@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
 
 public class UsuarioRepo {
+
 	
 	@Autowired
 	private List<Usuario> usuarios;

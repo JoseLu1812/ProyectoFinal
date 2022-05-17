@@ -12,45 +12,35 @@
     </head>
 
     <body>
-        <!-- MENU -->
-        <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
-            <div class="container-fluid">
-            <a th:href="@{/index}"><img id="logoTitulo" class="navbar-brand w-25 h-25" src="../img/logo.jpg" alt="Indios Shop"></a>
-            <div class="container-fluid d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">ROPA</a>
-                        <ul class="dropdown-menu">       
-                            <li class="nav_item">
-                                <a class="nav-link" href="/equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                <!-- MENU -->
+                <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
+                    <div class="container-fluid">
+                    <a th:href="@{/index}"><img id="logoTitulo" class="navbar-brand w-25 h-25" src="../img/logo.jpg" alt="Indios Shop"></a>
+                    <div class="container-fluid d-flex justify-content-end">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mynavbar">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
                             </li>
-                            <li class="nav_item">
-                                <a class="nav-link" href="/entrenamiento.html" th:href="@{/entrenamiento}">ENTRENAMIENTO</a>
+                            <li class="nav-item dropdown">
+                                <li class="nav_item">
+                                    <a class="nav-link" href="./equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                                </li>
+                            <li>
+                                <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">MERCHAN</a>
-                        <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/accesorios.html" th:href="@{/accesorios}">ACCESORIOS</a></li>
-                        <li><a class="dropdown-item" href="/regalos.html" th:href="@{/regalos}">REGALOS</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
+                        </div>
+                    </div>
+                </nav>
+
 
         <!-- Cesta -->
         <div class="container">
@@ -62,6 +52,8 @@
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th class="text-center">Precio</th>
+                                <th>Talla</th>
+                                <th>Descuento</th>
                                 <th class="text-center">Subtotal</th>
                                 <th> </th>
                             </tr>
@@ -72,23 +64,23 @@
                                 <td class="col-sm-8 col-md-6">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#"> 
-                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>
+                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${producto.imagen}" /> </a>
                                     <div class="media-body">
-                                        <h4 class="media-heading"><a href="#"><span th:text="${element.key.nombre}"></span></a></h4>
+                                        <h4 class="media-heading"><a href="#"><span th:text="${producto.nombre}"></span></a></h4>
                                         <h5 class="media-heading"> by <a href="#">Indios Shop</a></h5>
                                         
                                     </div>
                                 </div></td>
                                 <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <input class="form-control" id="inputQuantity" value="0" th:value="${element.value}" type="text" />
+                                <input class="form-control" id="inputQuantity" value="0" th:value="${producto.cantidad}" type="text" />
                                 </td>
-                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${element.key.pvp}"></strong></td>
-                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${element.key.pvp * element.value}"></strong></td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio}"></strong></td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio * producto.cantidad}"></strong></td>
                                 <td class="col-sm-1 col-md-1">
                                 
                                 
                                 <button type="button" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove"></span> Eliminar
+                                    <span class="glyphicon glyphicon-remove"></span>Eliminar
                                 </button></td>
                             </tr> 
 
@@ -106,7 +98,7 @@
                                 <td>   </td>
                                 <td>
                                 <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continuar Comprando
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>Continuar Comprando
                                 </button></td>
                                 <td>
                                 <button type="button" class="btn btn-success">

@@ -28,14 +28,14 @@ public class CarritoController {
         this.productoService = productoService;
     }
 	
-    @GetMapping ("")
+    @GetMapping ("/Carrito")
     public String verCarrito (Model model) {
     	if (model.addAttribute("products",carritoService.obtenerProductosCart()) == null)
     		return "redirect:/";
-    	return "cesta";
+    	return "carrito";
     }
     
-    @GetMapping ("")
+    @GetMapping ("/AgregarACarrito/{id}")
     public String productoACarrito (@PathVariable("id") Long id, Model model) {
     	if(productoService.findById(id).isPresent()) {
     		Producto encontrado = productoService.findById(id).get();
@@ -44,7 +44,7 @@ public class CarritoController {
     	return "redirect:/carrito";
     }
     
-    @GetMapping("")
+    @GetMapping("/BorrarDeCarrito/{id}")
     public String eliminarProductoCarrito(@PathVariable("id") Long id) {
         if(productoService.findById(id).isPresent()) {
         	Producto encontrado = productoService.findById(id).get();
@@ -53,8 +53,8 @@ public class CarritoController {
         return "redirect:/carrito";
     }
     
-    @ModelAttribute("")
-    public Double totalCarrito () { 	
+    @ModelAttribute("/TotalCarrito")
+    public Double totalCarrito() { 	
     	Map <Producto,Integer> carrito=carritoService.obtenerProductosCart();
     	double total=0.0;
     	if (carrito !=null) {

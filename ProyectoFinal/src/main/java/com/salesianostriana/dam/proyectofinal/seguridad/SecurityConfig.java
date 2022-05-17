@@ -22,24 +22,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 	@Autowired
 	    private UsuarioRepo usuarios;
 
+	 	@Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService());
 	    }
 	    
 	   
+	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http
 	                .csrf().disable()
 	                .authorizeRequests()
-	                .antMatchers("/").hasAnyRole("USER","ADMIN")
-	                .antMatchers("/admin/**").hasRole("ADMIN")
+	                .antMatchers("/private/**").hasAnyRole("USER", "ADMIN")
+	                .antMatchers("/admin/**", "/gestion/**").hasRole("ADMIN")
 	                .anyRequest().permitAll()
-	                .and().formLogin().loginPage("/formulario").loginProcessingUrl("/login")
+	                .and().exceptionHandling().accessDeniedPage("/error")
+	                .and().formLogin().loginPage("/").loginProcessingUrl("/login")
+	                		.defaultSuccessUrl("/private")
+	                		.failureUrl("/login-error").permitAll()
 	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 
 	    }
 
 	    @Bean
+	    @Override
 	    public UserDetailsService userDetailsService() {
 	        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
 	        usuarios.getUsuarios() 	
