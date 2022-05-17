@@ -20,7 +20,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	 	@Autowired
-	    private UsuariosRepo usuarios;
+	    private UsuarioRepo usuarios;
 
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService());
@@ -31,13 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	        http
 	                .csrf().disable()
 	                .authorizeRequests()
-	                .antMatchers("/private/**").hasAnyRole("USER", "ADMIN")
-	                .antMatchers("/admin/**", "/gestion/**").hasRole("ADMIN")
+	                .antMatchers("/").hasAnyRole("USER","ADMIN")
+	                .antMatchers("/admin/**").hasRole("ADMIN")
 	                .anyRequest().permitAll()
-	                .and().exceptionHandling().accessDeniedPage("/error")
-	                .and().formLogin().loginPage("/").loginProcessingUrl("/login")
-	                		.defaultSuccessUrl("/private")
-	                		.failureUrl("/login-error").permitAll()
+	                .and().formLogin().loginPage("/formulario").loginProcessingUrl("/login")
 	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 
 	    }

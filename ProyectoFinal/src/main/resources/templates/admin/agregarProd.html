@@ -23,29 +23,13 @@
             </div>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/index}">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">ROPA</a>
-                    	<ul>
-	                   		<li class="nav_item">
-	                        	<a class="nav-link" th:href="@{/../equipaciones}">EQUIPACIONES</a>
-	                    	</li>
-	                    	<li class="nav_item">
-	                       		<a class="nav-link" th:href="@{/../entrenamiento}">ENTRENAMIENTO</a>
-	                    	</li>
-	                    </ul>
-	                </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">MERCHAN</a>
-                        <ul class="dropdown-menu">
-                        	<li><a class="dropdown-item" th:href="@{/../accesorios}">ACCESORIOS</a></li>
-                        	<li><a class="dropdown-item" th:href="@{/../regalos}">REGALOS</a></li>
-                        </ul>
-                    </li>
                     <li>
-                        <a class="nav-link" th:href="@{/formulario}">INICIO SESIÓN</a>
+                        <a class="nav-link" href="./gestion.html" th:href="@{/admin/gestion}">LISTA</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto">
+                    <li>
+                        <a class="nav-link" href="../index.html" th:href="@{/logout}">SALIR</a>
                     </li>
                 </ul>
                 </div>
@@ -57,32 +41,32 @@
             <div class="form-row p-4">
                 <div class="col mt-2">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Camiseta, pantalón, bufanda...">
+                    <input type="text" class="form-control" id="nombre" placeholder="Camiseta, pantalón, bufanda..." th:field="*{nombre}">
                 </div>
 
                 <div class="col mt-2">
                     <label for="precio" class="form-label">Precio</label>
-                    <input type="text" class="form-control" id="precio" placeholder="0.0€">
+                    <input type="text" class="form-control" id="precio" placeholder="0.0€" th:field="*{precio}">
                 </div>
 
                 <div class="col mt-2">
                     <label for="talla" class="form-label">Talla</label>
-                    <input type="talla" class="form-control" id="talla" placeholder="S M L XL">
+                    <input type="talla" class="form-control" id="talla" placeholder="S M L XL" th:field="*{talla}">
                 </div>
 
                 <div class="col mt-2">
                     <label for="unidades" class="form-label">Unidades</label>
-                    <input type="number" class="form-control" id="unidades" placeholder="De 0 a 100">
+                    <input type="number" class="form-control" id="unidades" placeholder="De 0 a 100" th:field="*{unidades}">
                 </div>
 
                 <div class="col mt-2">
                     <label for="descuento" class="form-label">Descuento</label>
-                    <input type="button" class="form-control" id="descuento" placeholder="10%, 20%, 30%...">
+                    <input type="button" class="form-control" id="descuento" placeholder="10%, 20%, 30%..." th:field="*{descuento}">
                 </div>
 
                 <div class="col mt-2">
                     <label for="descuento" class="form-label">Imagen</label>
-                    <input type="url" class="form-control" id="imagen" placeholder="URL de la imagen">
+                    <input type="url" class="form-control" id="imagen" placeholder="URL de la imagen" th:field="*{imagen}">
                 </div>
                 
                 <div class="col mt-2">

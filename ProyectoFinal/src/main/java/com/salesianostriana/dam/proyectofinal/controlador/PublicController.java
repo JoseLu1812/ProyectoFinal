@@ -3,11 +3,9 @@ package com.salesianostriana.dam.proyectofinal.controlador;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.salesianostriana.dam.proyectofinal.modelo.Usuario;
-
 
 @Controller 
-public class UsuarioController {
+public class PublicController {
 	
 	@GetMapping({"/", "/index"})
 	public String home() {
@@ -37,6 +35,11 @@ public class UsuarioController {
 	@GetMapping("/formulario")
 	public String formulario() {
 		return "formulario";
+	}
+	
+	@GetMapping("/error")
+	public String error() {
+		return "error";
 	}
 	
 	

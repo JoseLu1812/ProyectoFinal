@@ -4,12 +4,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.salesianostriana.dam.proyectofinal.modelo.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class UsuariosRepo {
+import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
+
+public class UsuarioRepo {
 	
+	@Autowired
 	private List<Usuario> usuarios;
 
+	@Autowired
 	public List<Usuario> getUsuarios() {
 		return Collections.unmodifiableList(usuarios);
 	}

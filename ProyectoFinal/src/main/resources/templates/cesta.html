@@ -12,7 +12,6 @@
     </head>
 
     <body>
-
         <!-- MENU -->
         <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
             <div class="container-fluid">
@@ -27,11 +26,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
                     </li>
-                    <li class="nav_item">
-                        <a class="nav-link" href="/equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
-                    </li>
-                    <li class="nav_item">
-                        <a class="nav-link" href="/entrenamiento.html" th:href="@{/entrenamiento}">ENTRENAMIENTO</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">ROPA</a>
+                        <ul class="dropdown-menu">       
+                            <li class="nav_item">
+                                <a class="nav-link" href="/equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                            </li>
+                            <li class="nav_item">
+                                <a class="nav-link" href="/entrenamiento.html" th:href="@{/entrenamiento}">ENTRENAMIENTO</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">MERCHAN</a>
@@ -41,7 +45,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="/formulario.html" th:href="@{/formulario}">SOCIOS</a>
+                        <a class="nav-link" href="/formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
                     </li>
                 </ul>
                 </div>

@@ -29,7 +29,7 @@ public class CarritoController {
     }
 	
     @GetMapping ("")
-    public String carrito (Model model) {
+    public String verCarrito (Model model) {
     	if (model.addAttribute("products",carritoService.obtenerProductosCart()) == null)
     		return "redirect:/";
     	return "cesta";

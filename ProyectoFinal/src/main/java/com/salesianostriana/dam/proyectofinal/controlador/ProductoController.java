@@ -11,11 +11,10 @@ public class ProductoController {
 	
 	private ProductoService productoService;
 
-	@GetMapping({"/"})
+	@GetMapping({"/admin/gestion"})
 	public String productList(Model model) {
-		
 		model.addAttribute("productos", productoService.findAllProducts());
-		return "list";
+		return "gestion";
 	}
 	
 	

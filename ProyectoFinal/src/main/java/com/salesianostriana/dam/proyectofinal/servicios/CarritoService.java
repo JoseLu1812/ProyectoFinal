@@ -19,6 +19,7 @@ import com.salesianostriana.dam.proyectofinal.repositorio.ProductoRepository;
 @Scope (value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CarritoService {
 	
+	@Autowired
 	private ProductoRepository productoRepository;
 	
 	private Map<Producto, Integer> products = new HashMap <> ();
