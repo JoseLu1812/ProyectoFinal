@@ -28,11 +28,11 @@ public class CarritoService {
 		this.productoRepository=productorepository;
 	}
 	
-	public void addProducto (Producto optional) {
-		if (products.containsKey(optional)) {
-			products.replace(optional, products.get(optional)+1);
+	public void addProducto (Producto p) {
+		if (products.containsKey(p)) {
+			products.replace(p, products.get(p)+1);
 		}else {
-			products.put(optional, 1);
+			products.put(p, 1);
 		}
 	}
 	
