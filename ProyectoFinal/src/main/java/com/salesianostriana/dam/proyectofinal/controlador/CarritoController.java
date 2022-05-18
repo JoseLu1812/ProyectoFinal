@@ -23,9 +23,8 @@ public class CarritoController {
 	private ProductoService productoService;
 	
 
-    public CarritoController(CarritoService carritoService, ProductoService productoService) {
+    public CarritoController(CarritoService carritoService) {
         this.carritoService = carritoService;
-        this.productoService = productoService;
     }
 	
     @GetMapping ("/carrito")

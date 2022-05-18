@@ -15,7 +15,7 @@
                 <!-- MENU -->
                 <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
                     <div class="container-fluid">
-                    <a th:href="@{/index}"><img id="logoTitulo" class="navbar-brand w-25 h-25" src="../img/logo.jpg" alt="Indios Shop"></a>
+                    <a th:href="@{/index}"><img id="logoTitulo" class="navbar-brand w-25 h-25"  alt="Indios Shop"></a>
                     <div class="container-fluid d-flex justify-content-end">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                             <span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
                         </thead>
 
                         <tbody>
-                            <tr th:each="element : ${producto.entrySet()}">
+                            <tr th:each="producto : ${producto.entrySet()}">
                                 <td class="col-sm-8 col-md-6">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#"> 
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 </td>
-                                
+
                                 <td class="col-sm-1 col-md-1" style="text-align: center">
                                 <input class="form-control" id="inputQuantity" value="0" th:value="${producto.cantidad}" type="text" />
                                 </td>
@@ -80,9 +80,9 @@
                                 <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.talla}"></strong></td>
                                 <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.descuento}"></strong></td>
                                 <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio * producto.cantidad}"></strong></td>
-                                <td class="col-sm-1 col-md-1">
+                                <td class="col-sm-1 col-md-1" th>
                                     <button type="button" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-remove"></span> Remove
+                                        <span class="glyphicon glyphicon-remove"></span> ELIMINAR
                                     </button>
                                 </td>
                             </tr> 
@@ -92,7 +92,7 @@
                                 <td>   </td>
                                 <td>   </td>
                                 <td><h3>Total</h3></td>
-                                <td class="text-right"><h3><strong th:text="${total_carrito}"></strong></h3></td>
+                                <td class="text-right"><h3><strong th:text="${totalCarrito}"></strong></h3></td>
                             </tr>
 
                             <tr>

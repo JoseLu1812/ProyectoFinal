@@ -38,6 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	                		.defaultSuccessUrl("/private")
 	                		.failureUrl("/login-error").permitAll()
 	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
+	        
+	        http.csrf().disable();
+
+	        http.headers().frameOptions().disable();
 
 	    }
 

@@ -24,25 +24,25 @@ public class ProductoController {
 		return "equipaciones";
 	}
 	
-	@GetMapping("/admin/nuevo")
+	@GetMapping("/productos/nuevo")
 	public String nuevoProducto(Model model) {		
 		model.addAttribute("producto", new Producto());
-		return "/admin/equipaciones";
+		return "admin/agregarProd";
 	}
 	
-	@PostMapping("/admin/nuevo/submit")
+	@PostMapping("/productos/nuevo/submit")
 	public String submitNuevoProducto(Producto producto, Model model) {
 		productoService.save(producto);
-		return "redirect:/admin/producto/";
+		return "redirect:/equipaciones";
 	}
 	
-	@GetMapping("/admin/borrar/{id}")
+	@GetMapping("/productos/borrar/{id}")
 	public String borrarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
 		if (producto != null) {
 			productoService.delete(producto.get());
 		}
-		return "redirect:/admin/producto/";
+		return "redirect:/equipaciones";
 
 	}
 	
@@ -51,9 +51,9 @@ public class ProductoController {
 		Optional<Producto> producto = productoService.findById(id);
 		if (producto != null) {
 			model.addAttribute("producto", producto);
-			return "admin/form-producto";
+			return "admin/agregarProd";
 		} else {
-			return "redirect:/admin/producto/";
+			return "redirect:/equipaciones";
 		}
 
 	}

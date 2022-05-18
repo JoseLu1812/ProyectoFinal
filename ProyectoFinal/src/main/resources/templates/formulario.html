@@ -42,8 +42,8 @@
         </nav>
         
         <!--Formulario-->
-        <a th:href="@{/admin}">Zona admin</a>
-          <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
+        <a th:href="@{/admin/}">Zona admin</a>
+        <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
         <form method="POST" th:action="@{/login}" sec:authorize="!isAuthenticated()">
             <div class="form-row p-4">
                 <div class="col mt-2">
@@ -51,8 +51,8 @@
                 <input type="text" class="form-control" id="usuario" placeholder="Usuario1234" autofocus="autofocus">
                 </div>
                 <div class="col mt-2">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Contraseña">
                 </div>
                 <div class="col mt-2 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
