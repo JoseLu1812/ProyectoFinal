@@ -6,8 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
-
 public class UsuarioRepo {
 
 	
