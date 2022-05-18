@@ -19,22 +19,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	 	@Autowired
+		@Autowired
 	    private UsuarioRepo usuarios;
 
-	 	@Override
+
+	    @Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService());
 	    }
 	    
-	   
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http
 	                .csrf().disable()
 	                .authorizeRequests()
 	                .antMatchers("/private/**").hasAnyRole("USER", "ADMIN")
-	                .antMatchers("/admin/**", "/gestion/**").hasRole("ADMIN")
+	                .antMatchers("/admin/**").hasRole("ADMIN")
 	                .anyRequest().permitAll()
 	                .and().exceptionHandling().accessDeniedPage("/error")
 	                .and().formLogin().loginPage("/").loginProcessingUrl("/login")
@@ -45,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	    }
 
 	    @Bean
-	    @Override
 	    public UserDetailsService userDetailsService() {
 	        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
 	        usuarios.getUsuarios() 	

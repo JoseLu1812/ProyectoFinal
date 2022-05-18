@@ -21,7 +21,6 @@ public class CarritoService {
 	
 	@Autowired
 	private ProductoRepository productoRepository;
-	
 	private Map<Producto, Integer> products = new HashMap <> ();
 	
 	@Autowired
