@@ -31,8 +31,8 @@ public class UsuarioRepo {
 	public void init() {
 		usuarios = List.of(
 				Usuario.builder()
-					.username("Joselu1812")
-					.password("1234")
+					.username("admin")
+					.password("admin")
 					.nombre("José Luis")
 					.apellidos("HIdalgo Navas")
 					.role("ADMIN")

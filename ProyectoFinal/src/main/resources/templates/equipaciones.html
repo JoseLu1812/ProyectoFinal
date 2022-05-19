@@ -47,10 +47,10 @@
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
                     <div class="pull-right">
-                        <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary">Nuevo producto</a>
+                        <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}"  class="btn btn-primary">Nuevo producto</a>
                     </div>
 
-                    <table class="table">
+                    <table class="table" >
                         <thead>
                             <tr>
                                 <th>Imagen</th>
@@ -71,14 +71,23 @@
                                 <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
                                 <td th:text="${producto.talla}"></td>
                                 <td th:text="${producto.unidades}"></td>
-                                <td th:text="${producto.descuento}"></td>
+                                <td th:text="${producto.descuento}">%</td>
                                 <td>
-                                    <a  th:href="@{/admin/agregarACarrito/{id}(id=${producto.id})}">
-                                        <button type="button" class="btn btn-primary">
-                                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp; Comprar
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-primary" th:action="@{/admin/productos/nuevo/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <span class="glyphicon glyphicon-buy"></span> COMPRAR
+                                    </button>
                                 </td>
+                                <td class="col-sm-1 col-md-1" th>
+                                    <button type="button" class="btn btn-danger" th:action="@{/admin/productos/borrar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <span class="glyphicon glyphicon-remove"></span> ELIMINAR
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" th:action="@{/admin/productos/editar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <span class="glyphicon glyphicon-edit"></span> EDITAR
+                                    </button>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -90,7 +99,7 @@
 
         
         <!--Footer-->
-        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 ">
+        <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 ">
             <div class="container text-center p-1">
                 <a href="" class="text-white"><i class="bi bi-facebook"></i></a>
                 <a href="" class="text-white"><i class="bi bi-instagram"></i></a>

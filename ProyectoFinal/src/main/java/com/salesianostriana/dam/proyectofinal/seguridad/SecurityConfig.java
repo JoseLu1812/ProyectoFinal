@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	                .antMatchers("/private/**").hasAnyRole("USER", "ADMIN")
 	                .antMatchers("/admin/**").hasRole("ADMIN")
 	                .anyRequest().permitAll()
-	                .and().exceptionHandling().accessDeniedPage("/error")
-	                .and().formLogin().loginPage("/").loginProcessingUrl("/login")
-	                		.defaultSuccessUrl("/private")
+	                .and().exceptionHandling().accessDeniedPage("/error-acceso")
+	                .and().formLogin().loginPage("/formulario").loginProcessingUrl("/login")
+	                		.defaultSuccessUrl("/private/")
 	                		.failureUrl("/login-error").permitAll()
 	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll();
 	        

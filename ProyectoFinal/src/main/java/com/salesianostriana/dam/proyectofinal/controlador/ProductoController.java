@@ -18,7 +18,7 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping("/private/productos")
+	@GetMapping({"/private/", "/private/productos"})
 	public String productList(Model model) {
 		model.addAttribute("productos", productoService.findAll());
 		return "equipaciones";
@@ -46,7 +46,7 @@ public class ProductoController {
 
 	}
 	
-	@GetMapping("/admin/editar/{id}")
+	@GetMapping("/admin/productos/editar/{id}")
 	public String editarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
 		if (producto != null) {
