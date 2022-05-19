@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -32,7 +31,7 @@ public class UsuarioRepo {
 	public void init() {
 		usuarios = List.of(
 				Usuario.builder()
-					.username("JoseLu1812")
+					.username("Joselu1812")
 					.password("1234")
 					.nombre("José Luis")
 					.apellidos("HIdalgo Navas")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,26 +41,23 @@
             </div>
         </nav>
 
-        <div sec:authorize="isAuthenticated()">
-            <p sec:authentication="name">Nombre </p>
-            <a th:href="@{/logout}" class="btn btn-primary">Salir</a>
-        </div>
+        
 
         <!--Formulario-->
         <form>
             <div class="form-row p-4" TH th:action="nuevoProducto" th:object="${producto}">
                 <div class="col mt-2">
-                    <label for="nombre" class="form-label" th:text="#{}">Nombre</label>
+                    <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" placeholder="Camiseta, pantalón, bufanda..." th:field="*{nombre}">
                 </div>
 
                 <div class="col mt-2">
-                    <label for="precio" class="form-label">Precio</label>
+                    <label for="precio" class="form-label" >Precio</label>
                     <input type="text" class="form-control" id="precio" placeholder="0.0€" th:field="*{precio}">
                 </div>
 
                 <div class="col mt-2">
-                    <label for="talla" class="form-label">Talla</label>
+                    <label for="talla" class="form-label" >Talla</label>
                     <input type="talla" class="form-control" id="talla" placeholder="S M L XL" th:field="*{talla}">
                 </div>
 

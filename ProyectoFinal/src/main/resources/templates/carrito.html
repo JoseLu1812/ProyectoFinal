@@ -81,7 +81,7 @@
                                 <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.descuento}"></strong></td>
                                 <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio * producto.cantidad}"></strong></td>
                                 <td class="col-sm-1 col-md-1" th>
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="button" class="btn btn-danger" th:href="@{/private/borrarDeCarrito/{id}(id=${producto.id})}">
                                         <span class="glyphicon glyphicon-remove"></span> ELIMINAR
                                     </button>
                                 </td>
@@ -92,7 +92,7 @@
                                 <td>   </td>
                                 <td>   </td>
                                 <td><h3>Total</h3></td>
-                                <td class="text-right"><h3><strong th:text="${totalCarrito}"></strong></h3></td>
+                                <td class="text-right"><h3><strong th:text="${/private/totalCarrito}"></strong></h3></td>
                             </tr>
 
                             <tr>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,21 +44,24 @@
         <!--Formulario-->
         <a th:href="@{/admin/}">Zona admin</a>
         <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
-        <form method="POST" th:action="@{/login}" sec:authorize="!isAuthenticated()">
+        <form method="post" action="#"
+        th:action="@{/admin/producto/nuevo/submit}" th:object="${producto}" sec:authorize="!isAuthenticated()">
             <div class="form-row p-4">
                 <div class="col mt-2">
                 <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" id="usuario" placeholder="Usuario1234" autofocus="autofocus">
+                <input type="text" class="form-control" id="usuario" placeholder="Usuario1234" autofocus="autofocus" th:field="*{username}">
                 </div>
                 <div class="col mt-2">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                <input type="password" class="form-control" id="password" placeholder="Contraseña" th:field="*{password}">
                 </div>
                 <div class="col mt-2 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Recuérdame</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <a href="" th:href="@{/login}">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </a>
             </div>
           </form>
 

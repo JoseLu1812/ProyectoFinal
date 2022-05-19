@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Example;
@@ -48,9 +47,20 @@ public class CarritoService implements ProductoRepository{
         }
 	}
 	
-	
     public Map<Producto, Integer> obtenerProductosCart() {
         return Collections.unmodifiableMap(products);
+    }
+    
+    public Double totalCarrito() { 	
+    	Map <Producto,Integer> carrito=this.obtenerProductosCart();
+    	double total=0.0;
+    	if (carrito !=null) {
+        	for (Producto p: carrito.keySet()) {
+        		total+=p.getPvp()*carrito.get(p);
+        	}
+        	return total;
+    	}
+    	return 0.0;
     }
 
 	@Override

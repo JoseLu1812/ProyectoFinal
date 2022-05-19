@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
                     <div class="pull-right">
-                        <a href="./admin/agregarProd.html" th:href="@{/admin/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary">Nuevo producto</a>
+                        <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary">Nuevo producto</a>
                     </div>
 
                     <table class="table">
@@ -73,7 +73,7 @@
                                 <td th:text="${producto.unidades}"></td>
                                 <td th:text="${producto.descuento}"></td>
                                 <td>
-                                    <a  th:href="@{/agregarACarrito/{id}(id=${producto.id})}">
+                                    <a  th:href="@{/admin/agregarACarrito/{id}(id=${producto.id})}">
                                         <button type="button" class="btn btn-primary">
                                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp; Comprar
                                         </button>

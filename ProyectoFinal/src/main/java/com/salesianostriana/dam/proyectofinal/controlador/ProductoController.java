@@ -18,25 +18,25 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping({"/productos"})
+	@GetMapping("/private/productos")
 	public String productList(Model model) {
 		model.addAttribute("productos", productoService.findAll());
 		return "equipaciones";
 	}
 	
-	@GetMapping("/productos/nuevo")
+	@GetMapping("/admin/productos/nuevo")
 	public String nuevoProducto(Model model) {		
-		model.addAttribute("producto", new Producto());
 		return "admin/agregarProd";
 	}
 	
-	@PostMapping("/productos/nuevo/submit")
+	@PostMapping("/admin/productos/nuevo/submit")
 	public String submitNuevoProducto(Producto producto, Model model) {
+		model.addAttribute("producto", new Producto());
 		productoService.save(producto);
 		return "redirect:/equipaciones";
 	}
 	
-	@GetMapping("/productos/borrar/{id}")
+	@GetMapping("/admin/productos/borrar/{id}")
 	public String borrarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
 		if (producto != null) {
