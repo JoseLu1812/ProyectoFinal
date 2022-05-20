@@ -28,7 +28,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <li class="nav_item">
-                            <a class="nav-link" href="./equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                            <a class="nav-link" href="./productos.html" th:href="@{/productos}">EQUIPACIONES</a>
                         </li>
                     <li>
                         <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
@@ -44,7 +44,7 @@
         <!--Formulario-->
         <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
         <form method="post" action="#" th:action="@{/login}" sec:authorize="!isAuthenticated()">
-            <div class="form-row p-4">
+            <div class="form-row p-5 m-5 w-85">
                 <div class="col mt-2">
                     <label for="username" class="form-label">Usuario</label>
                     <input type="text" class="form-control" name="username" id="usuario" placeholder="Usuario123" autofocus="autofocus">
@@ -53,16 +53,18 @@
                     <label for="password" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
                 </div>
+                <div class="col mt-2 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </div>
                 
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </div>
-          </form>
+        </form>
 
 
 
         
         <!--Footer-->
-        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 ">
+        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
             <div class="container text-center p-1">
                 <a href="" class="text-white"><i class="bi bi-facebook"></i></a>
                 <a href="" class="text-white"><i class="bi bi-instagram"></i></a>

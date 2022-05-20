@@ -18,22 +18,22 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping({"/private/", "/private/productos"})
+	@GetMapping({"/productos"})
 	public String productList(Model model) {
 		model.addAttribute("productos", productoService.findAll());
-		return "equipaciones";
+		return "productos";
 	}
 	
 	@GetMapping("/admin/productos/nuevo")
-	public String nuevoProducto(Model model) {		
+	public String nuevoProducto(Model model) {	
+		model.addAttribute("producto", new Producto());
 		return "admin/agregarProd";
 	}
 	
 	@PostMapping("/admin/productos/nuevo/submit")
 	public String submitNuevoProducto(Producto producto, Model model) {
-		model.addAttribute("producto", new Producto());
 		productoService.save(producto);
-		return "redirect:/equipaciones";
+		return "redirect:/productos";
 	}
 	
 	@GetMapping("/admin/productos/borrar/{id}")
@@ -42,7 +42,7 @@ public class ProductoController {
 		if (producto != null) {
 			productoService.delete(producto.get());
 		}
-		return "redirect:/equipaciones";
+		return "redirect:/productos";
 
 	}
 	
@@ -53,7 +53,7 @@ public class ProductoController {
 			model.addAttribute("producto", producto);
 			return "admin/agregarProd";
 		} else {
-			return "redirect:/equipaciones";
+			return "redirect:/productos";
 		}
 
 	}

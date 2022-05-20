@@ -19,8 +19,7 @@ public class Producto {
 	private String nombre;
 	private double pvp;
 	private String talla;
-	private int unidades;
-	private double descuento;
+	private double unidades;
 	private String imagen;
 
 }

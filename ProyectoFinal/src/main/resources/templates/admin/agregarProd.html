@@ -28,7 +28,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <li class="nav_item">
-                            <a class="nav-link" href="../equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                            <a class="nav-link" href="../productos.html" th:href="@{/productos}">EQUIPACIONES</a>
                         </li>
                     <li>
                         <a class="nav-link" href="../formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
@@ -44,8 +44,8 @@
         
 
         <!--Formulario-->
-        <form method="post" action="#" th:object="{producto}">
-            <div class="form-row p-4" TH th:action="nuevoProducto" th:object="${producto}">
+        <form method="post" action="#" th:action="@{/admin/productos/nuevo/submit}" th:object="${producto}">
+            <div class="form-row p-4" >
                 <div class="col mt-2">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" placeholder="Camiseta, pantalón, bufanda..." th:field="*{nombre}">
@@ -53,7 +53,7 @@
 
                 <div class="col mt-2">
                     <label for="precio" class="form-label" >Precio</label>
-                    <input type="text" class="form-control" id="precio" placeholder="0.0€" th:field="*{precio}">
+                    <input type="text" class="form-control" id="precio" placeholder="0.0€" th:field="*{pvp}">
                 </div>
 
                 <div class="col mt-2">
@@ -67,23 +67,18 @@
                 </div>
 
                 <div class="col mt-2">
-                    <label for="descuento" class="form-label">Descuento</label>
-                    <input type="button" class="form-control" id="descuento" placeholder="10%, 20%, 30%..." th:field="*{descuento}">
-                </div>
-
-                <div class="col mt-2">
                     <label for="descuento" class="form-label">Imagen</label>
                     <input type="url" class="form-control" id="imagen" placeholder="URL de la imagen" th:field="*{imagen}">
                 </div>
                 
                 <div class="col mt-2">
-                    <button type="submit" class="btn btn-primary" th:href="@{/admin/nuevo/submit}">Crear</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
                 </div>
             </div>
         </form>
         
         <!--Footer-->
-        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 ">
+        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
             <div class="container text-center p-1">
                 <a href="" class="text-white"><i class="bi bi-facebook"></i></a>
                 <a href="" class="text-white"><i class="bi bi-instagram"></i></a>

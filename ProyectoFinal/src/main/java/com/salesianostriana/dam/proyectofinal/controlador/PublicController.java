@@ -12,11 +12,6 @@ public class PublicController {
 		return "index";
 	}
 	
-	@GetMapping("/equipaciones")
-	public String equipaciones() {
-		return "equipaciones";
-	}
-	
 	@GetMapping("/formulario")
 	public String formulario() {
 		return "formulario";
@@ -24,7 +19,7 @@ public class PublicController {
 	
 	@GetMapping("/error-acceso")
 	public String error() {
-		return "error";
+		return "errorAcceso";
 	}	
 	
 }

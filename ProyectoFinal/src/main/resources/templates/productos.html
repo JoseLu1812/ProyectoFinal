@@ -29,7 +29,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <li class="nav_item">
-                            <a class="nav-link" href="./equipaciones.html" th:href="@{/equipaciones}">EQUIPACIONES</a>
+                            <a class="nav-link" href="./productos.html" th:href="@{/productos}">EQUIPACIONES</a>
                         </li>
                     <li>
                         <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
@@ -46,7 +46,7 @@
          <div class="container">
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
-                    <div class="pull-right">
+                    <div class="pull-right col mt-2 ">
                         <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}"  class="btn btn-primary">Nuevo producto</a>
                     </div>
 
@@ -58,12 +58,14 @@
                                 <th>Pvp</th>
                                 <th>Talla</th>
                                 <th>Unidades</th>
-                                <th>Descuento</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="producto : ${productos}">
-                                <td><img
+                                <td class="w-15"><img
                                     th:src="${not (#strings.isEmpty(producto.imagen))} 
                                                 ? ${producto.imagen} : 'http://placehold.it/48x48'"
                                     class="img-responsive icono-categoria" alt="imagen" /></td>
@@ -71,21 +73,14 @@
                                 <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
                                 <td th:text="${producto.talla}"></td>
                                 <td th:text="${producto.unidades}"></td>
-                                <td th:text="${producto.descuento}">%</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" th:action="@{/admin/productos/nuevo/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <span class="glyphicon glyphicon-buy"></span> COMPRAR
-                                    </button>
+                                    <a type="button" class="btn btn-primary" th:href="@{/carrito/agregarACarrito/{id}(id=${producto.id})}">COMPRAR</a>
                                 </td>
                                 <td class="col-sm-1 col-md-1" th>
-                                    <button type="button" class="btn btn-danger" th:action="@{/admin/productos/borrar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <span class="glyphicon glyphicon-remove"></span> ELIMINAR
-                                    </button>
+                                    <a type="button" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">ELIMINAR</a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" th:action="@{/admin/productos/editar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <span class="glyphicon glyphicon-edit"></span> EDITAR
-                                    </button>
+                                    <a type="button" class="btn btn-primary" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">EDITAR</a>
                                 </td>
 
                             </tr>
@@ -99,7 +94,7 @@
 
         
         <!--Footer-->
-        <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 ">
+        <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
             <div class="container text-center p-1">
                 <a href="" class="text-white"><i class="bi bi-facebook"></i></a>
                 <a href="" class="text-white"><i class="bi bi-instagram"></i></a>
