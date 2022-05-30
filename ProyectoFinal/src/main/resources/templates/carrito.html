@@ -15,7 +15,7 @@
                 <!-- MENU -->
                 <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
                     <div class="container-fluid">
-                    <a th:href="@{/index}"><img id="logoTitulo" class="navbar-brand w-25 h-25"  alt="Indios Shop"></a>
+                        <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logito.jfif}" alt="Indios Shop"></a>
                     <div class="container-fluid d-flex justify-content-end">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                             <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <li class="nav_item">
-                                    <a class="nav-link" href="./productos.html" th:href="@{/productos}">EQUIPACIONES</a>
+                                    <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
                                 </li>
                             <li>
                                 <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
@@ -119,11 +119,11 @@
 
 
         <!--Footer-->
-        <footer id="sticky-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
+        <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
             <div class="container text-center p-1">
-                <a href="" class="text-white"><i class="bi bi-facebook"></i></a>
-                <a href="" class="text-white"><i class="bi bi-instagram"></i></a>
-                <a href="" class="text-white"><i class="bi bi-twitter"></i></a>
+                <a href="https://es-es.facebook.com/" class="text-white"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/" class="text-white"><i class="bi bi-instagram"></i></a>
+                <a href="https://twitter.com/?lang=es" class="text-white"><i class="bi bi-twitter"></i></a>
                 <p>Copyright &copy; Indios Shop</p>
             </div>
         </footer>
