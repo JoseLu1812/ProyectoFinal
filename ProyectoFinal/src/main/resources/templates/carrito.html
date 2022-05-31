@@ -11,37 +11,38 @@
         <title>CARRITO</title>
     </head>
 
+    
+    <header>
+        <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
+            <div class="container-fluid">
+            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
+            <div class="container-fluid d-flex justify-content-end">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <li class="nav_item">
+                            <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
+                        </li>
+                    <li>
+                        <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <body>
-                <!-- MENU -->
-                <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
-                    <div class="container-fluid">
-                        <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logito.jfif}" alt="Indios Shop"></a>
-                    <div class="container-fluid d-flex justify-content-end">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="mynavbar">
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <li class="nav_item">
-                                    <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
-                                </li>
-                            <li>
-                                <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-                </nav>
-
-
         <!-- Cesta -->
         <div class="container">
             <div class="row">
@@ -97,18 +98,14 @@
                                 <td>   </td>
                                 <td>   </td>
                                 <td>   </td>
-                                <td>
-                                
-                                <div th:href="@{/equipaciones}"> 
-                                    <button type="button" class="btn btn-default">
-                                        Continuar Comprando <span class="glyphicon glyphicon-shopping-cart"></span>
-                                    </button></td>
-                                </div>
+                                <td>   </td>
+
                                 <div>
                                     <td>
-                                    <button type="button" class="btn btn-success">
-                                        Checkout <span class="glyphicon glyphicon-play"></span>
-                                    </button></td>
+                                        <button type="button" class="btn btn-success">
+                                            Checkout <span class="glyphicon glyphicon-play"></span>
+                                        </button>
+                                    </td>
                                 </div>
                             </tr>
                         </tbody>

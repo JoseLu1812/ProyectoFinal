@@ -11,11 +11,11 @@
         <title>INICIO SESIÓN</title>
     </head>
 
-    <body>
-        <!-- MENU -->
+    
+    <header>
         <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
             <div class="container-fluid">
-            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>
+            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
             <div class="container-fluid d-flex justify-content-end">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,9 @@
                 </div>
             </div>
         </nav>
-        
+    </header>
+
+    <body>       
         <!--Formulario-->
         <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
         <form method="post" action="#" th:action="@{/login}" sec:authorize="!isAuthenticated()">

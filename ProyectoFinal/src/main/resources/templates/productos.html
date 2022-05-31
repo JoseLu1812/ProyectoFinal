@@ -13,85 +13,89 @@
     </head>
 
     <body>
-        <!-- MENU -->
-        <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
-            <div class="container-fluid">
-            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>
-            <div class="container-fluid d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <li class="nav_item">
-                            <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
+        <header>
+            <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
+                <div class="container-fluid">
+                <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
+                <div class="container-fluid d-flex justify-content-end">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
                         </li>
-                    <li>
-                        <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
-
-         <!--Body-->
-         <div class="container">
-            <div class="row">
-                <div class="col-md-offset-1 col-md-10">
-                    <div class="pull-right col mt-2 ">
-                        <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}"  class="btn btn-primary">Nuevo producto</a>
+                        <li class="nav-item dropdown">
+                            <li class="nav_item">
+                                <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
+                            </li>
+                        <li>
+                            <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
+                        </li>
+                    </ul>
                     </div>
+                </div>
+            </nav>
+        </header>
+    
+    
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="pull-right col mt-2 ">
+                            <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}"  class="btn btn-primary">Nuevo producto</a>
+                        </div>
 
-                    <table class="table" >
-                        <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Pvp</th>
-                                <th>Talla</th>
-                                <th>Unidades</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="producto : ${productos}">
-                                <td class="w-15"><img
-                                    th:src="${not (#strings.isEmpty(producto.imagen))} 
-                                                ? ${producto.imagen} : 'http://placehold.it/48x48'"
-                                    class="img-responsive icono-categoria" alt="imagen" /></td>
-                                <td th:text="${producto.nombre}"></td>
-                                <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
-                                <td th:text="${producto.talla}"></td>
-                                <td th:text="${producto.unidades}"></td>
-                                <td>
-                                    <a type="button" class="btn btn-primary" th:href="@{/carrito/agregarACarrito/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">COMPRAR</a>
-                                </td>
-                                <td class="col-sm-1 col-md-1" th>
-                                    <a type="button" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">ELIMINAR</a>
-                                </td>
-                                <td>
-                                    <a type="button" class="btn btn-primary" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}" sec:authorize="hasRole('ROLE_ADMIN')">EDITAR</a>
-                                </td>
+                        <table class="table" >
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Pvp</th>
+                                    <th>Talla</th>
+                                    <th>Unidades</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="producto : ${productos}">
+                                    <td><img
+                                        th:src="${not (#strings.isEmpty(producto.imagen))} 
+                                                    ? ${producto.imagen} : 'http://placehold.it/48x48'"
+                                        class="img-responsive icono-categoria w-50 h-50" alt="imagen" /></td>
+                                    <td th:text="${producto.nombre}"></td>
+                                    <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
+                                    <td th:text="${producto.talla}"></td>
+                                    <td th:text="${producto.unidades}"></td>
+                                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <a type="button" class="btn btn-primary" th:href="@{/carrito/agregarACarrito/{id}(id=${producto.id})}" >COMPRAR</a>
+                                    </td>
+                                    <td class="col-sm-1 col-md-1" sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <a type="button" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}">ELIMINAR</a>
+                                    </td>
+                                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <a type="button" class="btn btn-primary" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}">EDITAR</a>
+                                    </td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-
+            <div class="m-2">
+            
+            </div>
+        </main>
         
         <!--Footer-->
         <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">

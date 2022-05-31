@@ -27,10 +27,8 @@ public class CarritoController {
 	
     @GetMapping ("/carrito/agregarACarrito/{id}")
     public String productoACarrito (@PathVariable("id") Long id, Model model) {
-    	if(productoService.findById(id).isPresent()) {
-    		Producto encontrado = productoService.findById(id).get();
-    		carritoService.agregarProducto(encontrado);
-    	} 		 	
+    	Producto encontrado = productoService.findById(id).get();
+    	carritoService.addProducto(encontrado);    	    		 
     	return "redirect:/carrito";
     }
     

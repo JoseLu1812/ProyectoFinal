@@ -10,12 +10,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>ERROR</title>
     </head>
-
-    <body>
-        <!-- MENU -->
+    
+    <header>
         <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
             <div class="container-fluid">
-            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>
+            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
             <div class="container-fluid d-flex justify-content-end">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +39,9 @@
                 </div>
             </div>
         </nav>
- 
+    </header>
+
+    <body> 
         <h1>¡Error!</h1>
         <p>No tienes privilegios para acceder a esta funcionalidad</p>
         
