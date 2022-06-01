@@ -45,7 +45,7 @@
 
     <body>
         <!--Formulario-->
-        <form method="post" action="#" th:action="@{/admin/productos/nuevo/submit}" th:object="${producto}">
+        <form method="post" action="#" th:action="@{/admin/productos/editar/submit}" th:object="${producto}">
             <div class="form-row p-4" >
                 <div class="col mt-2">
                     <label for="nombre" class="form-label">Nombre</label>
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div class="col mt-2">
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </form>

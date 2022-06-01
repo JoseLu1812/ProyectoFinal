@@ -49,13 +49,15 @@ public class ProductoController {
 	@GetMapping("/admin/productos/editar/{id}")
 	public String editarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
-		if (producto != null) {
-			model.addAttribute("producto", producto);
-			return "admin/agregarProd";
-		} else {
-			return "redirect:/productos";
-		}
-
+		model.addAttribute("producto", producto);
+		productoService.deleteById(id);
+		return "admin/editarProd";
+	}
+	
+	@PostMapping("/admin/productos/editar/submit")
+	public String submitEditarProducto(Producto producto, Model model) {
+		productoService.save(producto);
+		return "redirect:/productos";
 	}
 		
 	

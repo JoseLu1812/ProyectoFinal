@@ -3,6 +3,8 @@ package com.salesianostriana.dam.proyectofinal.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Producto {
+public class LineaVenta {
 	
 	@Id
 	@GeneratedValue
@@ -19,8 +21,12 @@ public class Producto {
 	private String nombre;
 	private double pvp;
 	private String talla;
-	private double unidades;
 	private String imagen;
 	
+	@ManyToOne
+	private Carrito carrito;
+	
+	@OneToOne
+	private Producto producto;
 
 }

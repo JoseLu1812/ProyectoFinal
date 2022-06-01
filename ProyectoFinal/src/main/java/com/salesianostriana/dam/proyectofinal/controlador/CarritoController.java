@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
 import com.salesianostriana.dam.proyectofinal.servicios.CarritoService;
 import com.salesianostriana.dam.proyectofinal.servicios.ProductoService;
@@ -29,7 +30,7 @@ public class CarritoController {
     public String productoACarrito (@PathVariable("id") Long id, Model model) {
     	Producto encontrado = productoService.findById(id).get();
     	carritoService.addProducto(encontrado);    	    		 
-    	return "redirect:/carrito";
+    	return "carrito";
     }
     
     @GetMapping("/carrito/borrarDeCarrito/{id}")
