@@ -3,6 +3,8 @@ package com.salesianostriana.dam.proyectofinal.controlador;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,9 @@ public class ProductoController {
 	private ProductoService productoService;
 
 	@GetMapping({"/private/productos"})
-	public String productList(Model model) {
+	public String productList(Model model, @AuthenticationPrincipal UserDetails user) {
+		
+		
 		model.addAttribute("productos", productoService.findAll());
 		return "productos";
 	}
