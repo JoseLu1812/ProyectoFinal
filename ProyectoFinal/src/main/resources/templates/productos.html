@@ -29,13 +29,13 @@
                         </li>
                         <li class="nav-item dropdown">
                             <li class="nav_item">
-                                <a class="nav-link" href="./productos.html" th:href="@{/productos}">PRODUCTOS</a>
+                                <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
                             </li>
                         <li>
                             <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./carrito.html" th:href="@{/carrito}">CARRITO</a>
+                            <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
                         </li>
                     </ul>
                     </div>
@@ -75,15 +75,15 @@
                                     <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
                                     <td th:text="${producto.talla}"></td>
                                     <td th:text="${producto.unidades}"></td>
-                                    <td sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <a type="button" class="btn btn-primary" th:href="@{/carrito/agregarACarrito/{id}(id=${producto.id})}" >COMPRAR</a>
+                                    <td>
+                                        <a type="button" class="btn btn-primary" th:href="@{/private/carrito/agregarACarrito/{id}(id=${producto.id})}" >COMPRAR</a>
                                     </td>
-                                    <td class="col-sm-1 col-md-1" sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <th:block class="col-sm-1 col-md-1" sec:authorize="hasRole('ROLE_ADMIN')">
                                         <a type="button" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}">ELIMINAR</a>
-                                    </td>
-                                    <td sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <a type="button" class="btn btn-primary" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}">EDITAR</a>
-                                    </td>
+                                    </th:block>
+                                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                        <a type="button" class="btn btn-success" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}">EDITAR</a>
+                                    </th:block>
 
                                 </tr>
                             </tbody>

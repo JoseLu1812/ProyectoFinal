@@ -18,7 +18,7 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoService;
 
-	@GetMapping({"/productos"})
+	@GetMapping({"/private/productos"})
 	public String productList(Model model) {
 		model.addAttribute("productos", productoService.findAll());
 		return "productos";
