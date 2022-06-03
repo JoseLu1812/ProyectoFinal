@@ -9,59 +9,67 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>INICIO SESIÓN</title>
+        <style></style>
+
     </head>
 
-    
-    <header>
-        <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
-            <div class="container-fluid">
-            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
-            <div class="container-fluid d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <li class="nav_item">
-                            <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
+    <body>  
+        <header>
+            <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
+                <div class="container-fluid">
+                <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
+                <div class="container-fluid d-flex justify-content-end">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
                         </li>
-                    <li>
-                        <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
-                    </li>
-                </ul>
+                        <li class="nav-item dropdown">
+                            <li class="nav_item">
+                                <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
+                            </li>
+                        <li>
+                            <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <body>       
-        <!--Formulario-->
-        <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
-        <form method="post" action="#" th:action="@{/login}" sec:authorize="!isAuthenticated()">
-            <div class="form-row p-5 m-5 w-85">
-                <div class="col mt-2">
-                    <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" name="username" id="usuario" placeholder="Usuario123" autofocus="autofocus">
+        <main>     
+            <!--Formulario-->
+            <p th:if="${loginError}" class="error">Error en el nombre de usuario y/o contraseña</p>
+            <form method="post" action="#" th:action="@{/login}" sec:authorize="!isAuthenticated()">
+                <div class="form-row p-5 m-5 w-85">
+                    <div class="col m-auto w-25">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" name="username" id="usuario" placeholder="Usuario123" autofocus="autofocus">
+                    </div>
+                    <div class="col m-auto w-25">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+                    </div>
+                    <div class="col mt-2 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    </div>
+                   
                 </div>
-                <div class="col mt-2">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
-                </div>
+            </form>
+
+            <form action="post" th:action="@{/logout}">
                 <div class="col mt-2 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
                 </div>
-                
-            </div>
-        </form>
-
+            </form>
+        </main>
 
 
         <!--Footer-->

@@ -41,17 +41,6 @@ public class CarritoService{
         return Collections.unmodifiableMap(products);
     }
     
-    public Double totalCarrito() { 	
-    	Map <Producto,Integer> carrito=this.obtenerProductosCart();
-    	double total=0.0;
-    	if (carrito !=null) {
-        	for (Producto p: carrito.keySet()) {
-        		total+=p.getPvp()*carrito.get(p);
-        	}
-        	return total;
-    	}
-    	return 0.0;
-    }
 
 		
 }

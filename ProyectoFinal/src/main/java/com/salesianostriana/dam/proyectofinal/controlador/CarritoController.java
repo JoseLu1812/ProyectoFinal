@@ -1,10 +1,13 @@
 package com.salesianostriana.dam.proyectofinal.controlador;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
@@ -47,6 +50,21 @@ public class CarritoController {
     	if (model.addAttribute("products",carritoService.obtenerProductosCart()) == null)
     		return "redirect:/";
     	return "carrito";
+    }
+    
+    @ModelAttribute("totalCarrito")
+    public Double totalCarrito () {
+    	
+    	Map <Producto,Integer> carrito=carritoService.obtenerProductosCart();
+    	double total=0.0;
+    	if (carrito !=null) {
+        	for (Producto p: carrito.keySet()) {
+        		total+=p.getPvp()*carrito.get(p);
+        	}
+        	return total;
+    	}
+    	
+    	return 0.0;
     }
     
  

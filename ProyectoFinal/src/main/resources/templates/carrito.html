@@ -11,109 +11,100 @@
         <title>CARRITO</title>
     </head>
 
-    
-    <header>
-        <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
-            <div class="container-fluid">
-            <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
-            <div class="container-fluid d-flex justify-content-end">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <li class="nav_item">
-                            <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
-                        </li>
-                    <li>
-                        <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
     <body>
-        <!-- Cesta -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th class="text-center">Precio</th>
-                                <th>Talla</th>
-                                <th class="text-center">Subtotal</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
+        <header>
+            <nav class="navbar navbar-expand-sm bg-danger navbar-dark sticky-top">
+                <div class="container-fluid">
+                <a th:href="@{/index}"><img class="navbar-brand w-25 h-25" th:src="@{/img/logo.jpg}" alt="Indios Shop"></a>  
+                <div class="container-fluid d-flex justify-content-end">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html" th:href="@{/index}">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <li class="nav_item">
+                                <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
+                            </li>
+                        <li>
+                            <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-                        <tbody>
-                            <tr th:each="producto : ${productos}">
-                                <td class="col-sm-8 col-md-6">
-                                <div class="media">
-                                    <a class="thumbnail pull-left" href="#"> 
-                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${producto.imagen}" /> </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#"><span th:text="${producto.nombre}"></span></a></h4>
-                                        <h5 class="media-heading"> by <a href="#">Indios Shop</a></h5>
-                                        
+        <main>
+            <!-- Cesta -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th class="text-center">Precio</th>
+                                    <th>Talla</th>
+                                    <th class="text-center">Subtotal</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr th:each="producto : ${products}">
+                                    <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="#"> 
+                                            <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${producto.key.imagen}" /> </a>
                                     </div>
-                                </div>
-                                </td>
-
-                                <td class="col-sm-1 col-md-1" style="text-align: center">
-                                    <input class="form-control" id="inputQuantity" value="0" th:value="${producto.cantidad}" type="text" />
-                                </td>
-                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio}"></strong></td>
-                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.talla}"></strong></td>
-                                <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio * producto.cantidad}"></strong></td>
-                                <td class="col-sm-1 col-md-1" th>
-                                    <button type="button" class="btn btn-danger" method="post" action="#" th:action="eliminarProductoCarrito">
-                                        <span class="glyphicon glyphicon-remove"></span> ELIMINAR
-                                    </button>
-                                </td>
-                            </tr> 
-
-                            <tr>
-                                <td>   </td>
-                                <td>   </td>
-                                <td>   </td>
-                                <td><h3>Total</h3></td>
-                             <!--   <td class="text-right"><h3><strong th:action="${totalCarrito}"></strong></h3></td>-->
-                            </tr>
-
-                            <tr>
-                                <td>   </td>
-                                <td>   </td>
-                                <td>   </td>
-                                <td>   </td>
-
-                                <div>
-                                    <td>
-                                        <button type="button" class="btn btn-success">
-                                            Checkout <span class="glyphicon glyphicon-play"></span>
+                                    </td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.key.nombre}"></strong></td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio}"></strong></td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.key.talla}"></strong></td>
+                                    <td class="col-sm-1 col-md-1" th>
+                                        <button type="button" class="btn btn-danger" method="post" action="#" th:action="eliminarProductoCarrito">
+                                            <span class="glyphicon glyphicon-remove"></span> ELIMINAR
                                         </button>
                                     </td>
-                                </div>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr> 
+
+                                <tr>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td><h3>Total</h3></td>
+                                	<td class="text-right"><h3><strong th:action="${totalCarrito}"></strong></h3></td>
+                                </tr>
+
+                                <tr>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td>   </td>
+                                    <td>   </td>
+
+                                    <div>
+                                        <td>
+                                            <button type="button" class="btn btn-success">
+                                                Checkout <span class="glyphicon glyphicon-play"></span>
+                                            </button>
+                                        </td>
+                                    </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </main>
 
         <!--Footer-->
         <footer id="fixed-footer" class="flex-shrink-0 py-1 bg-danger text-white-50 fixed-bottom">
@@ -124,7 +115,6 @@
                 <p>Copyright &copy; Indios Shop</p>
             </div>
         </footer>
-  
-        
+
     </body>
 </html>

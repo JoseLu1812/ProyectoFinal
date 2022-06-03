@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.proyectofinal.servicios.CarritoService;
 import com.salesianostriana.dam.proyectofinal.servicios.ProductoService;
@@ -17,7 +18,7 @@ public class LoginController {
 	@Autowired
 	private ProductoService productoService;
 	
-	 @GetMapping("/login")
+		@PostMapping("/login")
 	    public String login(Model model) {
 		 	model.addAttribute("carrito", carritoService);
 		 	model.addAttribute("producto", productoService);
@@ -29,6 +30,5 @@ public class LoginController {
 	        model.addAttribute("loginError", true);
 	        return "index";
 	    }
-
-
+	    
 }
