@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
 import com.salesianostriana.dam.proyectofinal.servicios.CarritoService;
 import com.salesianostriana.dam.proyectofinal.servicios.ProductoService;
@@ -33,23 +31,26 @@ public class CarritoController {
     public String productoACarrito (@PathVariable("id") Long id, Model model) {
     	Producto encontrado = productoService.findById(id).get();
     	carritoService.addProducto(encontrado);    	    		 
-    	return "carrito";
+    	return "redirect:/private/carrito";
     }
     
     @GetMapping("/private/carrito/borrarDeCarrito/{id}")
     public String eliminarProductoCarrito(@PathVariable("id") Long id) {
-        if(productoService.findById(id).isPresent()) {
-        	Producto encontrado = productoService.findById(id).get();
-        	carritoService.eliminarProducto(encontrado);
-        }
-        return "redirect:/carrito";
+        carritoService.eliminarProducto(productoService.findById(id).get());
+        return "redirect:/private/carrito";
     }
     
     @GetMapping ("/private/carrito")
     public String verCarrito (Model model) {
     	if (model.addAttribute("products",carritoService.obtenerProductosCart()) == null)
-    		return "redirect:/";
+    		return "redirect:/private/carrito";
     	return "carrito";
+    }
+    
+    @GetMapping("/private/carrito/finalizarCompra")
+    public String checkout() {
+    	carritoService.finaizarCompra();
+    	return "redirect:/private/carrito";
     }
     
     @ModelAttribute("totalCarrito")

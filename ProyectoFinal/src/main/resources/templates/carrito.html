@@ -50,11 +50,10 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Producto</th>
-                                    <th>Cantidad</th>
                                     <th class="text-center">Precio</th>
-                                    <th>Talla</th>
-                                    <th class="text-center">Subtotal</th>
+                                    <th class="text-center">Talla</th>
                                     <th> </th>
                                 </tr>
                             </thead>
@@ -64,16 +63,18 @@
                                     <td class="col-sm-8 col-md-6">
                                     <div class="media">
                                         <a class="thumbnail pull-left" href="#"> 
-                                            <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${producto.key.imagen}" /> </a>
+                                            <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 80px; height: 80px;" th:src="${producto.key.imagen}" /> 
+                                        </a>
                                     </div>
                                     </td>
                                     <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.key.nombre}"></strong></td>
-                                    <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.precio}"></strong></td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.key.pvp}"></strong></td>
                                     <td class="col-sm-1 col-md-1 text-center"><strong th:text="${producto.key.talla}"></strong></td>
                                     <td class="col-sm-1 col-md-1" th>
-                                        <button type="button" class="btn btn-danger" method="post" action="#" th:action="eliminarProductoCarrito">
-                                            <span class="glyphicon glyphicon-remove"></span> ELIMINAR
-                                        </button>
+                                        <a th:href="@{/private/carrito/borrarDeCarrito/{id}(id=${producto.key.id})}">
+                                        	<button type="button" class="btn btn-danger">ELIMINAR
+                                        	</button>
+                                        </a>
                                     </td>
                                 </tr> 
 
@@ -82,7 +83,7 @@
                                     <td>   </td>
                                     <td>   </td>
                                     <td><h3>Total</h3></td>
-                                	<td class="text-right"><h3><strong th:action="${totalCarrito}"></strong></h3></td>
+                                	<td class="text-right"><h3><strong th:text="${totalCarrito}"></strong></h3></td>
                                 </tr>
 
                                 <tr>
@@ -93,9 +94,11 @@
 
                                     <div>
                                         <td>
-                                            <button type="button" class="btn btn-success">
+                                            <a th:href="@{/private/carrito/finalizarCompra}">
+                                            	<button type="button" class="btn btn-success">
                                                 Checkout <span class="glyphicon glyphicon-play"></span>
-                                            </button>
+                                            	</button>
+                                            </a>
                                         </td>
                                     </div>
                                 </tr>
