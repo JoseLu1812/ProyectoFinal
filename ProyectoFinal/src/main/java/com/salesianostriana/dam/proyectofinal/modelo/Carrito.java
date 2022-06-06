@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
+@Builder
 public class Carrito {
 	
 	
@@ -25,10 +29,12 @@ public class Carrito {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
+	@OneToMany (mappedBy="carrito", fetch= FetchType.EAGER)
+	@Builder.Default
+	private List <LineaVenta> lista = new ArrayList<LineaDeVenta>();
 	private LocalDateTime fecha;
 	
-	@OneToMany
-	private List<LineaVenta> lista = new ArrayList<LineaVenta>();
+	private double total;
 
 	
 }

@@ -17,14 +17,19 @@ import org.springframework.web.context.WebApplicationContext;
 import com.salesianostriana.dam.proyectofinal.modelo.Carrito;
 import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
-import com.salesianostriana.dam.proyectofinal.repositorio.ProductoRepository;
+import com.salesianostriana.dam.proyectofinal.repositorio.ICarritoRepository;
+import com.salesianostriana.dam.proyectofinal.repositorio.IProductoRepository;
+import com.salesianostriana.dam.proyectofinal.servicios.base.ServicioBaseImpl;
 
 @Service
 @Scope (value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class CarritoService{
+public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepository>{
 	
 	@Autowired
-	private ProductoRepository productoRepository;
+	private LineaVentaService lineaVentaService;
+	
+	@Autowired
+	private IProductoRepository productoRepository;
 	
 	private Map<Producto, Integer> products = new HashMap <> ();
 
@@ -57,13 +62,11 @@ public class CarritoService{
 			
 			listaLineasVenta.add(
 					LineaVenta.builder()
-					.manga(lineaVenta.getKey())
-					.cantidad(lineaVenta.getValue())
-					.subtotal(lineaVenta.getKey().getPvp() * lineaVenta.getValue())
+					.producto(lineaVenta.getKey())
 					.build()
 					);
 			
-			total=total+(lineaVenta.getKey().getPvp() * lineaVenta.getValue());
+			total=total+(lineaVenta.getKey().getPvp());
 		}
 		//build del carrito
 		carrito = Carrito.builder()
@@ -73,9 +76,9 @@ public class CarritoService{
 		
 		if(!listaLineasVenta.isEmpty()) {
 			this.save(carrito);
-			for (LineaVenta lineaDeVenta : listaLineasVenta) {
+			for (LineaVenta lineaVenta : listaLineasVenta) {
 				lineaVenta.addToTicket(carrito);
-				lineaVentaServicio.save(lineaDeVenta);
+				lineaVentaService.save(lineaVenta);
 				
 			}
 			
@@ -83,6 +86,6 @@ public class CarritoService{
     	products.clear();
     }
     
-
+    }
 		
 }

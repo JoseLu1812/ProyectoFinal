@@ -7,11 +7,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class LineaVenta {
 	
 	@Id
@@ -28,5 +30,16 @@ public class LineaVenta {
 	
 	@OneToOne
 	private Producto producto;
+
+	public void addToTicket(Carrito carrito) {
+		this.carrito=carrito;
+		carrito.getLista().add(this);
+	}
+	
+	public void removeFromTicket(Carrito carrito) {
+		carrito.getLista().remove(this);
+		this.carrito = null;
+		
+	}
 
 }

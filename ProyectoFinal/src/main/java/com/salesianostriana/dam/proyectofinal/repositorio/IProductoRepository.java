@@ -10,7 +10,7 @@ import com.salesianostriana.dam.proyectofinal.modelo.Producto;
 
 @Repository
 @Primary
-public interface ProductoRepository 
+public interface IProductoRepository 
 	extends JpaRepository<Producto, Long>{
 
 	public List<Producto> findByNombreContainingIgnoreCase(String nombre);

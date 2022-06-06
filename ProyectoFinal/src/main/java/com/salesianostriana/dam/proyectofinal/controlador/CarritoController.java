@@ -29,9 +29,9 @@ public class CarritoController {
 	
     @GetMapping ("/private/carrito/agregarACarrito/{id}")
     public String productoACarrito (@PathVariable("id") Long id, Model model) {
-    	Producto encontrado = productoService.findById(id).get();
-    	carritoService.addProducto(encontrado);    	    		 
-    	return "redirect:/private/carrito";
+    		Producto encontrado = productoService.findById(id).get();
+			carritoService.addProducto(encontrado); 
+			return "redirect:/private/carrito";
     }
     
     @GetMapping("/private/carrito/borrarDeCarrito/{id}")
