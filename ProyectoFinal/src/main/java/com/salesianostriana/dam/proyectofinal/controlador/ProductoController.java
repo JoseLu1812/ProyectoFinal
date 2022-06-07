@@ -37,7 +37,7 @@ public class ProductoController {
 	@PostMapping("/admin/productos/nuevo/submit")
 	public String submitNuevoProducto(Producto producto, Model model) {
 		productoService.save(producto);
-		return "redirect:/productos";
+		return "redirect:/private/productos";
 	}
 	
 	@GetMapping("/admin/productos/borrar/{id}")
@@ -46,7 +46,7 @@ public class ProductoController {
 		if (producto != null) {
 			productoService.delete(producto.get());
 		}
-		return "redirect:/productos";
+		return "redirect:/private/productos";
 
 	}
 	
@@ -61,7 +61,7 @@ public class ProductoController {
 	@PostMapping("/admin/productos/editar/submit")
 	public String submitEditarProducto(Producto producto, Model model) {
 		productoService.save(producto);
-		return "redirect:/productos";
+		return "redirect:/private/productos";
 	}
 		
 	

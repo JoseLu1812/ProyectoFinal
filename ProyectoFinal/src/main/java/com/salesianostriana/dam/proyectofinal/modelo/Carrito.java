@@ -31,7 +31,7 @@ public class Carrito {
 	@EqualsAndHashCode.Exclude
 	@OneToMany (mappedBy="carrito", fetch= FetchType.EAGER)
 	@Builder.Default
-	private List <LineaVenta> lista = new ArrayList<LineaDeVenta>();
+	private List <LineaVenta> lista = new ArrayList<LineaVenta>();
 	private LocalDateTime fecha;
 	
 	private double total;

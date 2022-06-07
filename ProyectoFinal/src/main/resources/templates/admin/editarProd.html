@@ -59,7 +59,14 @@
 
                     <div class="col mt-2">
                         <label for="talla" class="form-label" >Talla</label>
-                        <input type="text" class="form-control" id="talla" placeholder="S M L XL" th:field="*{talla}" required>
+                        <select name="talla" id="talla" size="6">
+                            <option>XXL</option>
+                            <option>XL</option>
+                            <option>L</option>
+                            <option>M</option>
+                            <option>S</option>
+                            <option selected>XS</option>
+                        </select>
                     </div>
 
                     <div class="col mt-2">
