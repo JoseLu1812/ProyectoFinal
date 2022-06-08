@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.proyectofinal.controlador;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,18 @@ public class ProductoController {
 	private ProductoService productoService;
 
 	@GetMapping({"/private/productos"})
-	public String productList(Model model, @AuthenticationPrincipal UserDetails user) {
-		
-		
+	public String productList(Model model, @AuthenticationPrincipal UserDetails user, Optional<Producto> prod) {
+		List<Producto> productos = new ArrayList<>();
+		if (prod.isEmpty()) {
+			for (Producto producto : productoService.findAll()) {
+				productos.add(producto);
+
+			}
+			model.addAttribute("productos", productos);
+
+		} else {
+			productos = productoService.findAll();
+		}
 		model.addAttribute("productos", productoService.findAll());
 		return "productos";
 	}

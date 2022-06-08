@@ -1,8 +1,6 @@
 package com.salesianostriana.dam.proyectofinal.controlador;
 
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,18 +52,8 @@ public class CarritoController {
     }
     
     @ModelAttribute("totalCarrito")
-    public Double totalCarrito () {
-    	
-    	Map <Producto,Integer> carrito=carritoService.obtenerProductosCart();
-    	double total=0.0;
-    	if (carrito !=null) {
-        	for (Producto p: carrito.keySet()) {
-        		total+=p.getPvp()*carrito.get(p);
-        	}
-        	return total;
-    	}
-    	
-    	return 0.0;
+    public Double totalCarrito() {
+    	return carritoService.calcularCarrito();
     }
     
  

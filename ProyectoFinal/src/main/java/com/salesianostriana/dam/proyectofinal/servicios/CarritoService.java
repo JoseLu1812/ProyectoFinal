@@ -2,6 +2,7 @@
 package com.salesianostriana.dam.proyectofinal.servicios;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -86,6 +87,32 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
     	products.clear();
     }
     
+    }
+    
+	
+	public Double calcularCarrito () {
+    	
+    	Map <Producto,Integer> carrito = this.obtenerProductosCart();
+    	double total = 0.0;
+    	double desc = 30.0;
+    	LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
+		LocalDateTime bf = LocalDateTime.of(2022, 6, 6, 00, 00);
+		LocalDateTime af = LocalDateTime.of(2022, 6, 20, 23, 59);
+    	if (carrito != null) {
+    		if(fecha.isBefore(bf) && fecha.isAfter(af)) {
+    			for (Producto p: carrito.keySet()) {
+    				total += (p.getPvp() * (p.getPvp() * desc /100)) * carrito.get(p);
+    			}
+    			return total;    			
+    		}else {
+    			for (Producto p: carrito.keySet()) {
+	        		total += p.getPvp()*carrito.get(p);
+	        	}
+	        	return total;
+    		}	    		
+    	}
+    	
+    	return 0.0;
     }
 		
 }
