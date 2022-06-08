@@ -54,13 +54,12 @@ public class ProductoController {
 	public String editarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
 		model.addAttribute("producto", producto);
-		productoService.deleteById(id);
 		return "admin/editarProd";
 	}
 	
 	@PostMapping("/admin/productos/editar/submit")
 	public String submitEditarProducto(Producto producto, Model model) {
-		productoService.save(producto);
+		productoService.edit(producto);
 		return "redirect:/private/productos";
 	}
 		
