@@ -47,7 +47,7 @@ public class CarritoController {
     
     @GetMapping("/private/carrito/finalizarCompra")
     public String checkout() {
-    	carritoService.finaizarCompra();
+    	carritoService.finalizarCompra();
     	return "redirect:/private/carrito";
     }
     

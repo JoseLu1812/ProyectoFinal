@@ -2,7 +2,6 @@
 package com.salesianostriana.dam.proyectofinal.servicios;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -53,17 +52,21 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
         return Collections.unmodifiableMap(products);
     }
     
-    public void finaizarCompra() {
+    public void finalizarCompra() {
     	
     	List<LineaVenta> listaLineasVenta =new ArrayList<LineaVenta>();
 		Carrito carrito;
 		double total=0;
-		for (Map.Entry<Producto, Integer> lineaVenta : products.entrySet()) {//
+		for (Map.Entry<Producto, Integer> lineaVenta : products.entrySet()) {
 			
 			
 			listaLineasVenta.add(
 					LineaVenta.builder()
 					.producto(lineaVenta.getKey())
+					.nombre(lineaVenta.getKey().getNombre())
+					.unidades(lineaVenta.getValue())
+					.pvp(lineaVenta.getKey().getPvp())
+					.talla(lineaVenta.getKey().getTalla())
 					.build()
 					);
 			
@@ -94,24 +97,12 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
     	
     	Map <Producto,Integer> carrito = this.obtenerProductosCart();
     	double total = 0.0;
-    	double desc = 30.0;
-    	LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
-		LocalDateTime bf = LocalDateTime.of(2022, 6, 6, 00, 00);
-		LocalDateTime af = LocalDateTime.of(2022, 6, 20, 23, 59);
     	if (carrito != null) {
-    		if(fecha.isBefore(bf) && fecha.isAfter(af)) {
-    			for (Producto p: carrito.keySet()) {
-    				total += (p.getPvp() * (p.getPvp() * desc /100)) * carrito.get(p);
-    			}
-    			return total;    			
-    		}else {
     			for (Producto p: carrito.keySet()) {
 	        		total += p.getPvp()*carrito.get(p);
 	        	}
 	        	return total;
-    		}	    		
-    	}
-    	
+    		}	    		    	
     	return 0.0;
     }
 		
