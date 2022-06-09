@@ -20,11 +20,8 @@ public class LineaVenta {
 	@GeneratedValue
 	private long id;
 	
-	private String nombre;
 	private double pvp;
-	private String talla;
 	private double unidades;
-	private String imagen;
 	private double subtotal;
 	
 	@ManyToOne
@@ -33,12 +30,12 @@ public class LineaVenta {
 	@OneToOne
 	private Producto producto;
 
-	public void addToTicket(Carrito carrito) {
+	public void addAlCarrito(Carrito carrito) {
 		this.carrito=carrito;
 		carrito.getLista().add(this);
 	}
 	
-	public void removeFromTicket(Carrito carrito) {
+	public void removeDelCarrito(Carrito carrito) {
 		carrito.getLista().remove(this);
 		this.carrito = null;
 		

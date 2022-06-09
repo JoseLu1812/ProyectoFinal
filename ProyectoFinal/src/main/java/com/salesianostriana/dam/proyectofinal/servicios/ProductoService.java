@@ -15,20 +15,16 @@ import com.salesianostriana.dam.proyectofinal.servicios.base.ServicioBaseImpl;
 public class ProductoService extends ServicioBaseImpl<Producto, Long, IProductoRepository> {
 	
 	public double obtenerReglaNeg(Producto prod) {
-		double total;
+		double total = prod.getPvp();
 		double desc = 30.0;
-		total = prod.getPvp() * (prod.getPvp() * desc / 100);
-		prod.setPvp(total);
+		LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
+		LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
+		LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
+		if(fecha.isAfter(af) && fecha.isBefore(bf)) {
+			total -= (prod.getPvp() * desc / 100);
+			prod.setPvp(total);
+		}
 		return total;
-		
-    	//LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
-		//LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
-		//LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
-	}
-	
-	
-	public void aplicarReglaProd() {
-		
 	}
 	
 }

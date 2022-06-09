@@ -19,7 +19,9 @@ public class Producto {
 	private String nombre;
 	private double pvp;
 	private String talla;
+	private double descuento;
 	private String imagen;
+	
 	
 
 }
