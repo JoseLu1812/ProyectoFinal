@@ -1,24 +1,22 @@
-function limitarDecimalesTotal() {
-    let totalDecimal = document.getElementById("total").value.toFixed(2);
-}
+document.formAgregar.addEventListener("submit",validarform);
 
-function validarAgregar(){
-    if(document.forms.formAgregar.getElementById("pvp").value > document.forms.formAgregar.getElementById("pvp").value.toFixed(2)){
-        alert("Formato incorrecto. Recuerda máxm¡imo 2 decimales.")
-        document.forms.formAgregar.getElementById("pvp").value.focus()
-        return 0;
-    }else if(document.forms.formAgregar.getElementById("pvp").value == ""){
-        alert("Indique un precio: ")
-        document.forms.formAgregar.getElementById("pvp").value.focus()
-        return 0;
+function validarform(){
+    if(formAgregar.elements.pvp.value > formAgregar.elements.pvp.value.toFixed(2)){
+        formAgregar.elements.pvp.style.borderColor = "#E22E11";
+        formAgregar.elements.pvp.pvp.focus();
+        return true;
+    }else if(formAgregar.elements.pvp.value == ""){
+        formAgregar.elements.pvp.style.borderColor = "#E22E11";
+        formAgregar.elements.pvp.focus();   
+        return false;
     }
 
     let max = 100;
 
-    if(document.forms.formAgregar.getElementById("unidades").value > max){
-        alert("Talla inválida")
-        document.forms.formAgregar.getElementById("unidades").value.focus()
-        return 0;
+    if(document.forms.formAgregar.getElementById("nombre").value > max){
+        formAgregar.elements.pvp.style.borderColor = "#E22E11";
+        formAgregar.elements.nombre.focus()
+        return false;
     }
 
 }

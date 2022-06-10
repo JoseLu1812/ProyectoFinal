@@ -9,7 +9,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>CARRITO</title>
-        <script th:src="@{/scripts/carrito.js}"></script>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     </head>
 
     <body>
@@ -31,12 +32,12 @@
                             <li class="nav_item">
                                 <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
                             </li>
-                        <li>
-                            <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
-                        </li>
+                            <li>
+                                <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                            </li>
                     </ul>
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                                     <td>   </td>
                                     <td>   </td>
                                     <td><h3>Total</h3></td>
-                                	<td class="text-right" id="total"><h3><strong th:text="${totalCarrito}"></strong></h3></td>
+                                	<td class="text-right" ><h3><strong id="total" th:text="${totalCarrito}"></strong></h3></td>
                                 </tr>
 
                                 <tr>

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -61,13 +62,12 @@ public class ProductoController {
 		return "redirect:/private/productos";
 	}
 	
-	/*@ModelAttribute
-	public double aplicarPvp() {
+	@ModelAttribute ("pvp")
+	public void aplicarPvp() {
 		for (Producto producto : productoService.findAll()) {
-			return productoService.obtenerReglaNeg(producto);
+			producto.setPvp(productoService.obtenerReglaNeg(producto));
 		}
-		
-	}*/
+	}
 	
 	
 }

@@ -117,9 +117,9 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
     
     public void finalizarCompra() {
     	
-    	Carrito carrito = new Carrito();
+    	Carrito carrito = new Carrito();;
     	double total = 0;
-    	LineaVenta ln = new LineaVenta();
+    	LineaVenta ln;
 		LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
 		LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
 		LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
@@ -129,14 +129,14 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
     			
     		ln = LineaVenta.builder()
     				.producto(ln.getProducto())
-    				//.pvp(ln.getPvp())
-    				//.subtotal(ln.getPvp() * ln.getUnidades())
     				.build()
     				);
     	
     	if(fecha.isAfter(af) && fecha.isBefore(bf)) {
-			ln.setPvp(ln.getPvp() - (ln.getPvp() * ln.getProducto().getDescuento() / 100));
-			ln.setSubtotal(ln.getPvp() * ln.getUnidades());			
+    		double pvp = ln.getProducto().getPvp();
+			total = pvp - (pvp * ln.getProducto().getDescuento() / 100);
+    		ln.getProducto().setPvp(total);
+			ln.setSubtotal(total * ln.getProducto().getPvp());			
 		}
     	
     	total += ln.getSubtotal();
@@ -154,12 +154,13 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
 	public Double calcularCarrito () {
     	
     	Map <Producto,Integer> carrito = this.obtenerProductosCart();
-    	double total = 0.0;
+    	double total = 0.0, redondeo = 0.0;
     	if (carrito != null) {
     			for (Producto p: carrito.keySet()) {
 	        		total += p.getPvp()*carrito.get(p);
+	        		redondeo = Math.round(total*100.0)/100.0;
 	        	}
-	        	return total;
+	        	return redondeo;
     		}	    		    	
     	return 0.0;
     }

@@ -10,6 +10,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>PRODUCTOS</title>
+        <link rel="stylesheet" href="drop-theme-arrows.css" />
+        <script src="tether.min.js"></script>
+        <script src="drop.min.js"></script>
+        <link rel="stylesheet" href="/drop/docs/welcome/examples/social-sharing/css/drop-example-theme-social-sharing.css" />
+        <link rel="stylesheet" href="/drop/dist/css/drop-theme-basic.css" />
     </head>
 
     <body>
@@ -31,12 +36,12 @@
                             <li class="nav_item">
                                 <a class="nav-link" href="./productos.html" th:href="@{/private/productos}">PRODUCTOS</a>
                             </li>
-                        <li>
-                            <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
-                        </li>
+                            <li>
+                                <a class="nav-link" href="./carrito.html" th:href="@{/private/carrito}">CARRITO</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="./formulario.html" th:href="@{/formulario}">INICIO SESIÓN</a>
+                            </li>
                     </ul>
                     </div>
                 </div>
@@ -45,42 +50,43 @@
     
     
         <main>
-            <div class="container mb-5">
+            <div class="container mb-5" >
                 <div class="row m-3">
                     <div class="col-md-offset-1 col-md-10">
-                        <div class="pull-right col mt-2 ">
+                        <div class="pull-right col mt-2">
                             <a href="./admin/agregarProd.html" th:href="@{/admin/productos/nuevo}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary">Nuevo producto</a>
                         </div>
-
-                        <table class="table" >
-                            <thead>
-                                <tr>
-                                    <th>Imagen</th>
-                                    <th>Nombre</th>
-                                    <th>Pvp</th>
-                                    <th>Talla</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="producto : ${productos}">
-                                    <td><img
-                                        th:src="${not (#strings.isEmpty(producto.imagen))} 
-                                                    ? ${producto.imagen} : 'http://placehold.it/48x48'"
-                                        class="img-responsive icono-categoria w-50 h-50" alt="imagen" /></td>
-                                    <td th:text="${producto.nombre}"></td>
-                                    <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
-                                    <td th:text="${producto.talla}"></td>
-                                    <td></td>
-                                    <td >
-                                        <div style="justify-content: center;">
-                                            <a type="button" class="btn btn-primary" th:href="@{/private/carrito/agregarACarrito/{id}(id=${producto.id})}" style="margin: 2px;">COMPRAR</a>
-                                            <a type="button" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}" style="margin: 2px;">ELIMINAR</a>
-                                            <a type="button" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-success" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}" style="margin: 2px;">EDITAR</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div data-aos="zoom-in">
+                            <table class="table" >
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Pvp</th>
+                                        <th>Talla</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="producto : ${productos}">
+                                        <td><img
+                                            th:src="${not (#strings.isEmpty(producto.imagen))} 
+                                                        ? ${producto.imagen} : 'http://placehold.it/48x48'"
+                                            class="img-responsive icono-categoria w-50 h-50" alt="imagen" /></td>
+                                        <td th:text="${producto.nombre}"></td>
+                                        <td th:text="${#numbers.formatCurrency(producto.pvp)}"></td>
+                                        <td th:text="${producto.talla}"></td>
+                                        <td></td>
+                                        <td >
+                                            <div style="justify-content: center;">
+                                                <a type="button" class="btn btn-primary" th:href="@{/private/carrito/agregarACarrito/{id}(id=${producto.id})}" style="margin: 2px;">COMPRAR</a>
+                                                <a type="button" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="@{/admin/productos/borrar/{id}(id=${producto.id})}" style="margin: 2px;">ELIMINAR</a>
+                                                <a type="button" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-success" th:href="@{/admin/productos/editar/{id}(id=${producto.id})}" style="margin: 2px;">EDITAR</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

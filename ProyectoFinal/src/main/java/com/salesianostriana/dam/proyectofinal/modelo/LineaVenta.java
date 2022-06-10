@@ -20,8 +20,6 @@ public class LineaVenta {
 	@GeneratedValue
 	private long id;
 	
-	private double pvp;
-	private double unidades;
 	private double subtotal;
 	
 	@ManyToOne
