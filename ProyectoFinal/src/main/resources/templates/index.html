@@ -9,6 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <title>HOME</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}" href="../static/css/estilos.css" media="screen" />
     </head>
 
     <body>    
@@ -43,36 +44,32 @@
         </header>
 
         <main>
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img th:src="@{/img/fondo2.jpg}" alt="Foto Escudo Camiseta" class="d-block h-auto">
-                    </div>
-
-                    <div class="carousel-item">
-                        <img th:src="@{/img/liga.jpg}" alt="Foto Partido Liga" class="d-block w-auto h-auto">
-                    </div>
-
-                    <div class="carousel-item">
-                        <img th:src="@{/img/fondo3.jpg}" alt="Foto Oficial" class="d-block w-auto h-auto">
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+        	<div class="m-5 p-5 d-flex align-items-center justify-content-center w-auto h-auto">
+	            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+	                <div class="carousel-indicators">
+	                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	                </div>
+	                
+	            	<div class="justify-content-center ">
+	                    <div class="carousel-inner">
+	                        <div class="carousel-item active justify-content-center">
+	                            <img th:src="@{/img/atmcampeon.jpg}" alt="Foto Atleti Campeón Liga 2021/22" class="d-block w-auto h-auto">
+	                        </div>
+	
+	                        <div class="carousel-item">
+	                            <img th:src="@{/img/joaofree.jpg}" alt="Foto Joao Control FreeStyle" class="d-block w-auto h-auto">
+	                        </div>
+	
+	                        <div class="carousel-item">
+	                            <img th:src="@{/img/joaogrizi.jpg}" alt="Foto Joao y Griezmann Celebrando" class="d-block w-auto h-auto">
+	                        </div>
+	                    </div>
+	            	</div>
+	                   
+	              </div>
+        	</div>
         </main>
         
         <!--Footer-->

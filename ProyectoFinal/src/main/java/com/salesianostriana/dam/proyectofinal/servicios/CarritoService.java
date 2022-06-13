@@ -16,7 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
 import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
 import com.salesianostriana.dam.proyectofinal.modelo.Venta;
-import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
 
 @Service
 @Scope (value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -56,74 +55,6 @@ public class CarritoService {
         return Collections.unmodifiableMap(products);
     }
     
-    /*public void finalizarCompraOld() {
-    	
-		
-    	
-    	List<LineaVenta> listaLineasVenta =new ArrayList<LineaVenta>();
-		Carrito carrito;
-		double total=0;
-		for (Map.Entry<Producto, Integer> lineaVenta : products.entrySet()) {
-			
-			
-			// 0º Insertar la nueva venta en la base de datos.
-			
-			// 1º Construir la instancia de Linea de Venta, sin asignar el pvp, y la guardo en una variable de tipo LineaVenta
-			
-			// 2º Comprobar si hay descuento, y en función de ello asignar el pvp
-			
-			// 3º Calcular el subtotal
-			
-			// 4º Con los métodos helper de Linea de Venta, asociar la venta y la línea
-			
-			// 5º Guardar en la base de datos la línea de venta
-			
-			// 6º Actualizar el total
-			
-			// 7º Actualizar la venta con el nuevo total
-			
-			
-			listaLineasVenta.add(
-					LineaVenta.builder()
-					.producto(lineaVenta.getKey())
-					///.nombre(lineaVenta.getKey().getNombre())
-					.unidades(lineaVenta.getValue())
-					//.pvp(lineaVenta.getKey().getPvp())
-					///.talla(lineaVenta.getKey().getTalla())
-					///.imagen(lineaVenta.getKey().getImagen())
-					//.subtotal(lineaVenta.getKey().getPvp() * lineaVenta.getValue())
-					.build()
-					);
-			
-			
-			total=total+(lineaVenta.getKey().getPvp());
-		}
-		
-		
-		
-		
-		//build del carrito
-		carrito = Carrito.builder()
-		.fecha(LocalDateTime.now())
-		.total(total)		
-		.build();
-		
-		if(!listaLineasVenta.isEmpty()) {
-			this.save(carrito);
-			for (LineaVenta lineaVenta : listaLineasVenta) {
-				lineaVenta.addAlCarrito(carrito);
-				lineaVentaService.save(lineaVenta);
-				
-			}
-			
-    	//productoRepository.flush();
-    	products.clear();
-		}
-    
-    }*/
-    
-    
-    
     	// 0º Insertar la nueva venta en la base de datos.
 	
  		// 1º Construir la instancia de Linea de Venta, sin asignar el pvp, y la guardo en una variable de tipo LineaVenta
@@ -140,24 +71,18 @@ public class CarritoService {
  			
  		// 7º Actualizar la venta con el nuevo total
     
-    public void finalizarCompra(Usuario usuario) {
+    public void finalizarCompra(String username) {
     	  	
     	Venta venta = Venta.builder()
     					.fecha(LocalDateTime.now())
-    					.usuario(usuario.getUsername())
+    					.usuario(username)
     					.build();
     	
     	double total = 0;
     	
     	ventaService.save(venta);
     	
-    	// Guardar la venta en la base de datos usando el servicio de venta
-    	
-    	//LineaVenta ln = new LineaVenta();
     	Map<Producto, Integer> listado = obtenerProductosCart();
-		//LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
-		//LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
-		//LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
 		for (Entry<Producto, Integer> p : listado.entrySet()) {
 
 			LineaVenta ln = LineaVenta.builder()
@@ -173,23 +98,11 @@ public class CarritoService {
 	    	
 	    	total += ln.getSubtotal();
     	}
-		/*
-    	carrito = Venta.builder()
-    			.fecha(fecha)
-    			.total(total)
-    			.build();	
-    		
-    	
-    	ln.addToVenta(carrito);
-    					*/
 		
 		venta.setTotal(total);
 		
 		ventaService.edit(venta);
-		
-		
-		
-		
+
     	products.clear();
     }
     

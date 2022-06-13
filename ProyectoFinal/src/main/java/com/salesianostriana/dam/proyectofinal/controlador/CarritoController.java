@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
-import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
 import com.salesianostriana.dam.proyectofinal.servicios.CarritoService;
 import com.salesianostriana.dam.proyectofinal.servicios.ProductoService;
 
@@ -50,7 +49,7 @@ public class CarritoController {
     
     @GetMapping("/private/carrito/finalizarCompra")
     public String checkout(@AuthenticationPrincipal UserDetails user) {
-    	carritoService.finalizarCompra((Usuario)user);
+    	carritoService.finalizarCompra(user.getUsername());
     	return "redirect:/private/carrito";
     }
     

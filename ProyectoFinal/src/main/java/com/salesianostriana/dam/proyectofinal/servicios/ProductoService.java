@@ -19,7 +19,7 @@ public class ProductoService extends ServicioBaseImpl<Producto, Long, IProductoR
 		double desc = 30.0;
 		double redondeo;
 		LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
-		LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
+		LocalDateTime af = LocalDateTime.of(2022, 6, 18, 00, 00);
 		LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
 		if(fecha.isAfter(af) && fecha.isBefore(bf)) {
 			total -= (prod.getPvp() * desc / 100);
@@ -28,5 +28,7 @@ public class ProductoService extends ServicioBaseImpl<Producto, Long, IProductoR
 		}
 		return total;
 	}
+	
+	
 	
 }

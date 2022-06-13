@@ -52,22 +52,27 @@ public class ProductoController {
 	@GetMapping("/admin/productos/editar/{id}")
 	public String editarProducto(@PathVariable("id") Long id, Model model) {
 		Optional<Producto> producto = productoService.findById(id);
-		model.addAttribute("producto", producto);
-		return "admin/editarProd";
+		
+		if(producto != null) {
+			model.addAttribute("producto", producto.get());
+			return "admin/editarProd";
+		}else {
+			return "redirect:/private/productos";
+		}
 	}
 	
 	@PostMapping("/admin/productos/editar/submit")
-	public String submitEditarProducto(Producto producto, Model model) {
-		productoService.edit(producto);
+	public String submitEditarProducto(@ModelAttribute("producto") Producto prod, Model model) {
+		productoService.edit(prod);
 		return "redirect:/private/productos";
 	}
 	
-	@ModelAttribute ("pvp")
+	/*@ModelAttribute ("pvp")
 	public void aplicarPvp() {
 		for (Producto producto : productoService.findAll()) {
 			producto.setPvp(productoService.aplicarDescuento(producto));
 		}
-	}
+	}*/
 	
 	
 }
