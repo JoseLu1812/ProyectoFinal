@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,24 +18,29 @@ public class LineaVenta {
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	private double subtotal;
+	private double pvp;
+	//private double subtotal;
+	private int cantidad;
 	
 	@ManyToOne
-	private Carrito carrito;
+	private Venta venta;
 	
-	@OneToOne
+	@ManyToOne
 	private Producto producto;
 
-	public void addAlCarrito(Carrito carrito) {
-		this.carrito=carrito;
-		carrito.getLista().add(this);
+	public void addToVenta(Venta venta) {
+		this.venta=venta;
+		venta.getLista().add(this);
 	}
 	
-	public void removeDelCarrito(Carrito carrito) {
-		carrito.getLista().remove(this);
-		this.carrito = null;
+	public void removeFromVenta(Venta venta) {
+		venta.getLista().remove(this);
+		this.venta = null;
 		
+	}
+	
+	public double getSubtotal() {
+		return pvp * cantidad;
 	}
 
 }

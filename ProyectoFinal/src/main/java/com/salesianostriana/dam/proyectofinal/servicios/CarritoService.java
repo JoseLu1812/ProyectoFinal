@@ -2,12 +2,10 @@
 package com.salesianostriana.dam.proyectofinal.servicios;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -15,23 +13,31 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.salesianostriana.dam.proyectofinal.modelo.Carrito;
 import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
-import com.salesianostriana.dam.proyectofinal.repositorio.ICarritoRepository;
-import com.salesianostriana.dam.proyectofinal.servicios.base.ServicioBaseImpl;
+import com.salesianostriana.dam.proyectofinal.modelo.Venta;
+import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
 
 @Service
 @Scope (value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepository>{
+public class CarritoService {
 	
+
 	@Autowired
 	private LineaVentaService lineaVentaService;
-
+	
+	@Autowired
+	private VentaService ventaService;
+	
+	
+	
+	@Autowired
+	private ProductoService productoService;
 	
 	private Map<Producto, Integer> products = new HashMap <> ();
 
 	public void addProducto (Producto p) {
+		productoService.aplicarDescuento(p);
 		if (products.containsKey(p)) {
 			products.replace(p, products.get(p)+1);
 		}else {
@@ -50,10 +56,9 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
         return Collections.unmodifiableMap(products);
     }
     
-    public void finalizarCompraOld() {
+    /*public void finalizarCompraOld() {
     	
-		// 0º Insertar la nueva venta en la base de datos.
-
+		
     	
     	List<LineaVenta> listaLineasVenta =new ArrayList<LineaVenta>();
 		Carrito carrito;
@@ -61,6 +66,7 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
 		for (Map.Entry<Producto, Integer> lineaVenta : products.entrySet()) {
 			
 			
+			// 0º Insertar la nueva venta en la base de datos.
 			
 			// 1º Construir la instancia de Linea de Venta, sin asignar el pvp, y la guardo en una variable de tipo LineaVenta
 			
@@ -72,8 +78,9 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
 			
 			// 5º Guardar en la base de datos la línea de venta
 			
+			// 6º Actualizar el total
 			
-			
+			// 7º Actualizar la venta con el nuevo total
 			
 			
 			listaLineasVenta.add(
@@ -88,12 +95,12 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
 					.build()
 					);
 			
-			// 6º Actualizar el total
+			
 			total=total+(lineaVenta.getKey().getPvp());
 		}
 		
 		
-		// 7º Actualizar la venta con el nuevo total
+		
 		
 		//build del carrito
 		carrito = Carrito.builder()
@@ -111,43 +118,79 @@ public class CarritoService extends ServicioBaseImpl<Carrito, Long, ICarritoRepo
 			
     	//productoRepository.flush();
     	products.clear();
-    }
-    
-    }
-    
-    public void finalizarCompra() {
-    	
-    	Carrito carrito = new Carrito();;
-    	double total = 0;
-    	LineaVenta ln;
-		LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
-		LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
-		LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
-		
-		
-    	carrito.getLista().add(
-    			
-    		ln = LineaVenta.builder()
-    				.producto(ln.getProducto())
-    				.build()
-    				);
-    	
-    	if(fecha.isAfter(af) && fecha.isBefore(bf)) {
-    		double pvp = ln.getProducto().getPvp();
-			total = pvp - (pvp * ln.getProducto().getDescuento() / 100);
-    		ln.getProducto().setPvp(total);
-			ln.setSubtotal(total * ln.getProducto().getPvp());			
 		}
+    
+    }*/
+    
+    
+    
+    	// 0º Insertar la nueva venta en la base de datos.
+	
+ 		// 1º Construir la instancia de Linea de Venta, sin asignar el pvp, y la guardo en una variable de tipo LineaVenta
+ 			
+ 		// 2º Comprobar si hay descuento, y en función de ello asignar el pvp
+ 		
+ 		// 3º Calcular el subtotal
+ 		
+ 		// 4º Con los métodos helper de Linea de Venta, asociar la venta y la línea
+ 		
+ 		// 5º Guardar en la base de datos la línea de venta
+ 			
+ 		// 6º Actualizar el total
+ 			
+ 		// 7º Actualizar la venta con el nuevo total
+    
+    public void finalizarCompra(Usuario usuario) {
+    	  	
+    	Venta venta = Venta.builder()
+    					.fecha(LocalDateTime.now())
+    					.usuario(usuario.getUsername())
+    					.build();
     	
-    	total += ln.getSubtotal();
+    	double total = 0;
     	
-    	carrito = Carrito.builder()
+    	ventaService.save(venta);
+    	
+    	// Guardar la venta en la base de datos usando el servicio de venta
+    	
+    	//LineaVenta ln = new LineaVenta();
+    	Map<Producto, Integer> listado = obtenerProductosCart();
+		//LocalDateTime fecha = LocalDateTime.from(ZonedDateTime.now());
+		//LocalDateTime af = LocalDateTime.of(2022, 6, 8, 00, 00);
+		//LocalDateTime bf = LocalDateTime.of(2022, 6, 20, 23, 59);
+		for (Entry<Producto, Integer> p : listado.entrySet()) {
+
+			LineaVenta ln = LineaVenta.builder()
+	    				.producto(p.getKey())
+	    				.pvp(p.getKey().getPvp())
+	    				.cantidad(p.getValue())
+	    				.build();
+	    				
+	    	ln.addToVenta(venta);
+	    	
+	    	lineaVentaService.save(ln);
+	    	
+	    	
+	    	total += ln.getSubtotal();
+    	}
+		/*
+    	carrito = Venta.builder()
     			.fecha(fecha)
     			.total(total)
     			.build();	
+    		
     	
-    	ln.addAlCarrito(carrito);
-    					
+    	ln.addToVenta(carrito);
+    					*/
+		
+		venta.setTotal(total);
+		
+		ventaService.edit(venta);
+		
+		
+		
+		
+    	products.clear();
     }
     
 	

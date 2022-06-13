@@ -17,7 +17,7 @@ public class LineaVentaService extends ServicioBaseImpl<LineaVenta, Long, ILinea
 
 
 	public List <LineaVenta> findByTicket(Long id){
-		return this.repositorio.findByCarritoId(id);
+		return repositorio.findByVentaId(id);
 	}	
 	
 }

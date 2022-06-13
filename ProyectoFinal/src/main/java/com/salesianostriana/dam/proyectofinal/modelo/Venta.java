@@ -20,7 +20,7 @@ import lombok.ToString;
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 @Builder
-public class Carrito {
+public class Venta {
 	
 	
 	@Id
@@ -29,12 +29,14 @@ public class Carrito {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany (mappedBy="carrito", fetch= FetchType.EAGER)
+	@OneToMany (mappedBy="venta", fetch= FetchType.EAGER)
 	@Builder.Default
 	private List <LineaVenta> lista = new ArrayList<LineaVenta>();
 	private LocalDateTime fecha;
 	
 	private double total;
+	
+	private String usuario;
 
 	
 }

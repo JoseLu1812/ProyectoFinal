@@ -2,12 +2,15 @@ package com.salesianostriana.dam.proyectofinal.controlador;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.salesianostriana.dam.proyectofinal.modelo.Producto;
+import com.salesianostriana.dam.proyectofinal.seguridad.Usuario;
 import com.salesianostriana.dam.proyectofinal.servicios.CarritoService;
 import com.salesianostriana.dam.proyectofinal.servicios.ProductoService;
 
@@ -19,7 +22,7 @@ public class CarritoController {
 	
 	@Autowired
 	private ProductoService productoService;
-	
+
 
     public CarritoController(CarritoService carritoService) {
         this.carritoService = carritoService;
@@ -46,8 +49,8 @@ public class CarritoController {
     }
     
     @GetMapping("/private/carrito/finalizarCompra")
-    public String checkout() {
-    	carritoService.finalizarCompra();
+    public String checkout(@AuthenticationPrincipal UserDetails user) {
+    	carritoService.finalizarCompra((Usuario)user);
     	return "redirect:/private/carrito";
     }
     

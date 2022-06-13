@@ -65,7 +65,7 @@ public class ProductoController {
 	@ModelAttribute ("pvp")
 	public void aplicarPvp() {
 		for (Producto producto : productoService.findAll()) {
-			producto.setPvp(productoService.obtenerReglaNeg(producto));
+			producto.setPvp(productoService.aplicarDescuento(producto));
 		}
 	}
 	

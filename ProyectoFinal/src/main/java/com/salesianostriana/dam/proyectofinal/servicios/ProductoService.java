@@ -14,7 +14,7 @@ import com.salesianostriana.dam.proyectofinal.servicios.base.ServicioBaseImpl;
 @Service
 public class ProductoService extends ServicioBaseImpl<Producto, Long, IProductoRepository> {
 	
-	public double obtenerReglaNeg(Producto prod) {
+	public double aplicarDescuento(Producto prod) {
 		double total = prod.getPvp();
 		double desc = 30.0;
 		double redondeo;

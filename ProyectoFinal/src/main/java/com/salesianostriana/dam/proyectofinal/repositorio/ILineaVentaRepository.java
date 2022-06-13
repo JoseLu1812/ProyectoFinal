@@ -8,6 +8,6 @@ import com.salesianostriana.dam.proyectofinal.modelo.LineaVenta;
 
 public interface ILineaVentaRepository extends JpaRepository<LineaVenta, Long>{
 
-	public List<LineaVenta> findByCarritoId(Long id);
+	public List<LineaVenta> findByVentaId(Long id);
 
 }
