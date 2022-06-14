@@ -67,12 +67,7 @@ public class ProductoController {
 		return "redirect:/private/productos";
 	}
 	
-	/*@ModelAttribute ("pvp")
-	public void aplicarPvp() {
-		for (Producto producto : productoService.findAll()) {
-			producto.setPvp(productoService.aplicarDescuento(producto));
-		}
-	}*/
+
 	
 	
 }

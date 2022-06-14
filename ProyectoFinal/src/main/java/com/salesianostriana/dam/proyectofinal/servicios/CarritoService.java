@@ -55,22 +55,6 @@ public class CarritoService {
         return Collections.unmodifiableMap(products);
     }
     
-    	// 0º Insertar la nueva venta en la base de datos.
-	
- 		// 1º Construir la instancia de Linea de Venta, sin asignar el pvp, y la guardo en una variable de tipo LineaVenta
- 			
- 		// 2º Comprobar si hay descuento, y en función de ello asignar el pvp
- 		
- 		// 3º Calcular el subtotal
- 		
- 		// 4º Con los métodos helper de Linea de Venta, asociar la venta y la línea
- 		
- 		// 5º Guardar en la base de datos la línea de venta
- 			
- 		// 6º Actualizar el total
- 			
- 		// 7º Actualizar la venta con el nuevo total
-    
     public void finalizarCompra(String username) {
     	  	
     	Venta venta = Venta.builder()
